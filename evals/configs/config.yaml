@@ -1,0 +1,14 @@
+# evals/configs/config.yaml
+
+agent:
+  base_url: "http://localhost:8000"
+
+evaluation:
+  metrics:
+    sql: true
+    agent: true
+    performance: true
+
+dataset:
+  type: "spider"
+  path: "data/spider_data/train_spider.json"

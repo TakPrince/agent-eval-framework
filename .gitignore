@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+agent-eval-env/
+venv/
+.env
+
+# DB
+*.db
+
+# Logs
+*.log
+
+# OS
+.DS_Store

@@ -1,0 +1,1402 @@
+[
+    {
+        "query": "How many singers do we have?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.95,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What is the total number of singers?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.49,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.98,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What are the names, countries for every singer in descending order of age?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.66,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What is the average, minimum, and maximum id of all French singers?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.82,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "What is the average, minimum, and maximum id for French singers?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.6666666666666666,
+            "score": 0.2
+        },
+        "performance_eval": {
+            "latency": 0.93,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.2,
+            "performance_score": 1.0,
+            "final_score": 0.51
+        }
+    },
+    {
+        "query": "Show the name and the release year of the song by the youngest singer.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.78,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What are the names and release years for all the songs of the youngest singer?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.71,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "What are all distinct countries where singers born in 2001 are from?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.31,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "What are  the different countries with singers born in 2001?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.95,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "Show all countries and the number of singers in each country.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.92,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "How many singers are from each country?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.59,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "List all song names by singers above the average age.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.48,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "What are all the song names by singers who are older than average?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.4,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.56,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "What are the locations and names of all stations with capacity between 5000 and 10000?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.53,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "What is the average and the highest capacity of all stadiums?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.65,
+            "latency_score": 1.0,
+            "error": 1,
+            "score": 0.7
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 0.7,
+            "final_score": 0.525
+        }
+    },
+    {
+        "query": "What is the average and highest capacities for all stations?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 1.01,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.498
+        }
+    },
+    {
+        "query": "What is the name and capacity for the stadium with highest average attendance?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.97,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "What is the name and capacity for the stadium with the highest average attendance?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.24,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "How many concerts are there after or in year 2014?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.46,
+            "latency_score": 0.7,
+            "error": 1,
+            "score": 0.48999999999999994
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.48999999999999994,
+            "final_score": 0.46799999999999997
+        }
+    },
+    {
+        "query": "How many concerts occurred after or in 2014?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.77,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "Show the stadium name and the number of concerts in each stadium.",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 1.3,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.498
+        }
+    },
+    {
+        "query": "For each stadium, how many concerts play there?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.85,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "Show the stadium name and capacity with most number of concerts in year 2014 or after.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.17,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "What is the name and highest attendance of the stadium  with the most concerts after 2013?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.82,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Which concert is the oldest?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.07,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "Return the oldest concert name?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.81,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Show the highest attendance without any concert.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 1.16,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.248
+        }
+    },
+    {
+        "query": "What are lowest attendance of the stadiums without any concerts?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.71,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Show countries where a singer born in 1981 or 1991 are from.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.01,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "Show average attendance for all stadiums except for stadiums having a concert in year 2014.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.19,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "What are the lowest attendance of all stadiums that did not have a concert in 2014?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.83,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "Show the name and theme for all concerts and the number of singers in each concert.",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.7,
+            "latency_score": 1.0,
+            "error": 1,
+            "score": 0.7
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7,
+            "final_score": 0.51
+        }
+    },
+    {
+        "query": "What are the names, themes, and number of singers for each and every concert?",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.6666666666666666,
+            "score": 0.2
+        },
+        "performance_eval": {
+            "latency": 0.65,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.2,
+            "performance_score": 1.0,
+            "final_score": 0.51
+        }
+    },
+    {
+        "query": "List singer names and number of concerts for each singer.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.2,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "What are the names of the singers and number of concerts for each person?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.84,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "List all singer names in concerts after or in year 2014.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.83,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What are the names of the singers who performed in a concert before or in 2014?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.13,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "what is the name and nation of the singer who have a song having 'Hey' in its name?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 1.24,
+            "latency_score": 0.7,
+            "error": 0,
+            "score": 0.7899999999999999
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 0.7899999999999999,
+            "final_score": 0.27799999999999997
+        }
+    },
+    {
+        "query": "What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.49,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "Find the lowest and highest attendance of the stadiums which some concerts happened in the years of both 2014 and 2015.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.98,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "What are the lowest and highest attendance of the stadiums that had concerts that occurred in both 2014 and 2015?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.83,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Find the number of concerts happened in the stadium with the highest capacity.",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.69,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.54
+        }
+    },
+    {
+        "query": "What are the number of concerts that occurred in the stadium with the largest capacity?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.3333333333333333,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.93,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "Find the number of pets whose weight is heavier than 10.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.5,
+            "score": 0.3
+        },
+        "performance_eval": {
+            "latency": 0.38,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.3,
+            "performance_score": 1.0,
+            "final_score": 0.29000000000000004
+        }
+    },
+    {
+        "query": "How many pets have a greater weight than 10?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.82,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Find the weight of the youngest dog.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.44999999999999996
+        },
+        "performance_eval": {
+            "latency": 0.82,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.44999999999999996,
+            "performance_score": 1.0,
+            "final_score": 0.33499999999999996
+        }
+    },
+    {
+        "query": "How much does the youngest dog weigh?",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.89,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    },
+    {
+        "query": "Find the maximum weight for each type of pet. List the maximum weight and pet type.",
+        "predicted_sql": "SELECT * FROM table",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 0.3333333333333333,
+            "failure_rate": 0.0,
+            "score": 0.39999999999999997
+        },
+        "performance_eval": {
+            "latency": 0.76,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.39999999999999997,
+            "performance_score": 1.0,
+            "final_score": 0.32
+        }
+    }
+]
