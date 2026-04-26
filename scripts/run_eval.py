@@ -12,29 +12,27 @@ from evals.runners.gemini_runner import GeminiRunner
 import os
 from dotenv import load_dotenv
 from evals.runners.ollama_runner import OllamaRunner
+from evals.runners.groq_runner import GroqRunner
+from evals.runners.openrouter_runner import OpenRouterRunner
 
 
 load_dotenv()
 api_key = os.getenv("gemKey")
-
+groq_key = os.getenv("GROQ_API_KEY")
+openrouter_key = os.getenv("OPENROUTER_API_KEY")
 
 def main():
-    # runner = AgentRunner(base_url=config["agent"]["base_url"])
-
-    # runner = GeminiRunner(
-    # api_key=api_key,
-    # model_name="gemini-2.5-flash-lite"
-    # )
-
-    # runner = OllamaRunner(model_name="llama3")
 
     models = [
-    {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
-    {"name": "gemini_pro", "type": "gemini", "model": "gemini-1.5-pro"},
-    {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
+    # {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
+    # {"name": "gemini_pro", "type": "gemini", "model": "gemini-1.5-pro"},
+    # {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
     
     # optional
-    {"name": "ollama_llama3", "type": "ollama", "model": "llama3"}
+    # {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
+
+     {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
+    #{"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
     ]
 
     dataset = load_dataset(config)
@@ -52,8 +50,13 @@ def main():
                 api_key=api_key,
                 model_name=model_cfg["model"]
             )
+        elif model_cfg["type"] == "groq":
+            runner = GroqRunner(api_key=groq_key, model_name=model_cfg["model"])
+        elif model_cfg["type"] == "openrouter":
+            runner = OpenRouterRunner(api_key=openrouter_key, model_name=model_cfg["model"])
         elif model_cfg["type"] == "ollama":
             runner = OllamaRunner(model_name=model_cfg["model"])
+
 
         results = []
 
