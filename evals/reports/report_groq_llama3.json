@@ -1,0 +1,302 @@
+[
+    {
+        "model": "groq_llama3",
+        "query": "How many singers do we have?",
+        "expected_sql": "SELECT count(*) FROM singer",
+        "predicted_sql": "SELECT COUNT(*) FROM singer;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.32,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.63
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What is the total number of singers?",
+        "expected_sql": "SELECT count(*) FROM singer",
+        "predicted_sql": "SELECT COUNT(*) FROM singer;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.19,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.63
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
+        "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+        "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.31,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What are the names, countries for every singer in descending order of age?",
+        "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+        "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.61,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What is the average, minimum, and maximum id of all French singers?",
+        "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.37,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What is the average, minimum, and maximum id for French singers?",
+        "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.55,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "Show the name and the release year of the song by the youngest singer.",
+        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+        "predicted_sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.6,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What are the names and release years for all the songs of the youngest singer?",
+        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+        "predicted_sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.43,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.38
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What are all distinct countries where singers born in 2001 are from?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.35,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.63
+        }
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What are  the different countries with singers born in 2001?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "tool_accuracy": 0.0,
+            "efficiency": 1.0,
+            "failure_rate": 0.0,
+            "score": 0.6
+        },
+        "performance_eval": {
+            "latency": 0.4,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.6,
+            "performance_score": 1.0,
+            "final_score": 0.63
+        }
+    }
+]
