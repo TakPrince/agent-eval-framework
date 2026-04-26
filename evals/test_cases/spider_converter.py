@@ -17,7 +17,7 @@ def convert_spider_sample(sample: dict):
     }
 
 
-def load_spider_dataset(path: str, limit: int = 50):
+def load_spider_dataset(path: str, limit: int = 10):
     try:
         with open(path, "r") as f:
             spider_data = json.load(f)

@@ -8,14 +8,99 @@ from evals.test_cases.dataset_loader import load_dataset
 from evals.test_cases.validator import validate_dataset
 from evals.evaluators.final_evaluator import combine_scores
 from evals.reports.report_generator import generate_report, generate_summary
+from evals.runners.gemini_runner import GeminiRunner
+import os
+from dotenv import load_dotenv
+from evals.runners.ollama_runner import OllamaRunner
+
+
+load_dotenv()
+api_key = os.getenv("gemKey")
+
 
 def main():
-    runner = AgentRunner(base_url=config["agent"]["base_url"])
+    # runner = AgentRunner(base_url=config["agent"]["base_url"])
+
+    # runner = GeminiRunner(
+    # api_key=api_key,
+    # model_name="gemini-2.5-flash-lite"
+    # )
+
+    # runner = OllamaRunner(model_name="llama3")
+
+    models = [
+    {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
+    {"name": "gemini_pro", "type": "gemini", "model": "gemini-1.5-pro"},
+    {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
+    
+    # optional
+    {"name": "ollama_llama3", "type": "ollama", "model": "llama3"}
+    ]
 
     dataset = load_dataset(config)
     dataset = validate_dataset(dataset)
 
     results = []
+
+    for model_cfg in models:
+
+        print(f"\n\n🚀 Running model: {model_cfg['name']}")
+
+        # 🔁 Select runner
+        if model_cfg["type"] == "gemini":
+            runner = GeminiRunner(
+                api_key=api_key,
+                model_name=model_cfg["model"]
+            )
+        elif model_cfg["type"] == "ollama":
+            runner = OllamaRunner(model_name=model_cfg["model"])
+
+        results = []
+
+        # 🔁 SAME dataset loop
+        for test in dataset:
+            response = runner.run(test["query"])
+
+            sql_eval = evaluate_sql(
+                predicted_sql=response.get("sql"),
+                expected_sql=test.get("expected_sql")
+            )
+
+            agent_eval = evaluate_agent(response, test)
+            perf_eval = evaluate_performance(response)
+            final_eval = combine_scores(sql_eval, agent_eval, perf_eval)
+
+            result = {
+                "model": model_cfg["name"],
+                "query": test["query"],
+
+                # 🔥 ADD THIS
+                "expected_sql": test.get("expected_sql"),
+
+                "predicted_sql": response.get("sql"),
+
+                "sql_eval": sql_eval,
+                "agent_eval": agent_eval,
+                "performance_eval": perf_eval,
+                "final": final_eval
+            }
+
+            results.append(result)
+
+            print("\n---")
+            print("Model:", model_cfg["name"])
+            print("Query:", test["query"])
+            print("FINAL SCORE:", final_eval["final_score"])
+
+        # 🔥 SAVE REPORT PER MODEL
+        output_path = f"evals/reports/report_{model_cfg['name']}.json"
+        generate_report(results, output_path)
+
+        # 🔥 SUMMARY
+        summary = generate_summary(results)
+
+        print(f"\n=== SUMMARY ({model_cfg['name']}) ===")
+        print(summary)
 
     for test in dataset:
         response = runner.run(test["query"])
