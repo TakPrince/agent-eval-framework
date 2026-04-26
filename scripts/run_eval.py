@@ -28,11 +28,9 @@ def main():
     # {"name": "gemini_pro", "type": "gemini", "model": "gemini-1.5-pro"},
     # {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
     
-    # optional
-     
-     {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
-     {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
-     {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
+    #  {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
+      {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
+    #   {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
 
     ]
 

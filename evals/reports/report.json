@@ -1,14 +1,14 @@
 [
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "How many singers do we have?",
         "expected_sql": "SELECT count(*) FROM singer",
-        "predicted_sql": "SELECT COUNT(*) FROM singer;",
+        "predicted_sql": "SELECT count(*) FROM singer",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
+            "exact_match": 1,
             "partial_match": 1,
-            "score": 0.5
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -17,28 +17,28 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 37.91,
-            "latency_score": 0.2,
+            "latency": 1.31,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0.5,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.518
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What is the total number of singers?",
         "expected_sql": "SELECT count(*) FROM singer",
-        "predicted_sql": "SELECT COUNT(*) FROM singer;",
+        "predicted_sql": "SELECT count(*) FROM singer",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
+            "exact_match": 1,
             "partial_match": 1,
-            "score": 0.5
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -47,28 +47,28 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 5.0,
-            "latency_score": 0.2,
+            "latency": 1.1,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0.5,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.518
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATEDIFF(CURRENT_DATE, s.birthday) ASC;",
+        "predicted_sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
+            "exact_match": 1,
+            "partial_match": 1,
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -77,23 +77,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 14.48,
-            "latency_score": 0.2,
+            "latency": 1.47,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What are the names, countries for every singer in descending order of age?",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATEDIFF(CURRENT_DATE, s.birthday) DESC;",
+        "predicted_sql": "SELECT name, country\nFROM singer\nORDER BY birthday DESC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -107,23 +107,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 14.32,
-            "latency_score": 0.2,
+            "latency": 1.31,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS avg_id, MIN(id) AS min_id, MAX(id) AS max_id \nFROM singer \nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singer\nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -137,23 +137,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 13.25,
-            "latency_score": 0.2,
+            "latency": 1.08,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country='France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singer\nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -167,23 +167,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 7.96,
-            "latency_score": 0.2,
+            "latency": 1.76,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, 0 AS release_year \nFROM singer s \nORDER BY s.birthday \nLIMIT 1;",
+        "predicted_sql": "sql\n-- The query cannot be answered with the given database schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'song' table with columns like 'title', 'release_year', and 'singer_id' would be needed.",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -197,23 +197,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 10.99,
-            "latency_score": 0.2,
+            "latency": 2.24,
+            "latency_score": 0.7,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 0.79
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 0.79,
+            "final_score": 0.338
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, 2023 - EXTRACT(YEAR FROM AGE(DATE '1970-01-01', s.birthday)) AS release_year\nFROM singer s\nORDER BY s.birthday DESC\nLIMIT 1;",
+        "predicted_sql": "SELECT name\nFROM singer\nORDER BY birthday DESC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -227,23 +227,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 18.9,
-            "latency_score": 0.2,
+            "latency": 1.15,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country FROM singer WHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -257,23 +257,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 10.03,
-            "latency_score": 0.2,
+            "latency": 1.5,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
-        "model": "ollama_llama3",
+        "model": "openrouter_mixtral",
         "query": "What are  the different countries with singers born in 2001?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
-        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -287,26 +287,26 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 11.55,
-            "latency_score": 0.2,
+            "latency": 1.23,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "How many singers do we have?",
-        "predicted_sql": "SELECT COUNT(*) FROM singer;",
+        "predicted_sql": "SELECT count(*) FROM singer",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
+            "exact_match": 1,
             "partial_match": 1,
-            "score": 0.5
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -315,26 +315,26 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 4.56,
-            "latency_score": 0.2,
+            "latency": 1.75,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0.5,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.518
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
         "query": "What is the total number of singers?",
-        "predicted_sql": "SELECT COUNT(*) FROM singer;",
+        "predicted_sql": "SELECT count(*) FROM singer",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
+            "exact_match": 1,
             "partial_match": 1,
-            "score": 0.5
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -343,26 +343,26 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 5.23,
-            "latency_score": 0.2,
+            "latency": 1.49,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0.5,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.518
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
         "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
-        "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY STR_TO_DATE(birthday, '%Y') ASC;",
+        "predicted_sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;",
         "sql_eval": {
             "execution_match": 0,
-            "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
+            "exact_match": 1,
+            "partial_match": 1,
+            "score": 0.8
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -371,21 +371,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 13.38,
-            "latency_score": 0.2,
+            "latency": 1.31,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
-            "sql_score": 0,
+            "sql_score": 0.8,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.78
         }
     },
     {
         "query": "What are the names, countries for every singer in descending order of age?",
-        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATE_PART('year', AGE(CURRENT_DATE, s.birthday)) DESC;",
+        "predicted_sql": "SELECT name, country\nFROM singer\nORDER BY birthday DESC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -399,16 +399,16 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 15.98,
-            "latency_score": 0.2,
+            "latency": 1.39,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
@@ -427,21 +427,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.99,
-            "latency_score": 0.2,
+            "latency": 1.29,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "What is the average, minimum, and maximum id for French singers?",
-        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singer\nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -455,21 +455,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.79,
-            "latency_score": 0.2,
+            "latency": 1.17,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "Show the name and the release year of the song by the youngest singer.",
-        "predicted_sql": "SELECT s.name, EXTRACT(YEAR FROM age(current_date, s.birthday)) AS release_year\nFROM singer s\nORDER BY s.birthday ASC\nLIMIT 1;",
+        "predicted_sql": "sql\n-- The query cannot be answered with the given database schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'song' table with columns like 'title', 'release_year', and 'singer_id' would be needed.",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -483,21 +483,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 16.03,
-            "latency_score": 0.2,
+            "latency": 1.45,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "What are the names and release years for all the songs of the youngest singer?",
-        "predicted_sql": "SELECT s.name, '197x' AS release_year \nFROM singer s \nWHERE s.birthday IN (SELECT MIN(birth) FROM singer);",
+        "predicted_sql": "SELECT name\nFROM singer\nORDER BY birthday DESC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -511,21 +511,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 13.36,
-            "latency_score": 0.2,
+            "latency": 1.27,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "What are all distinct countries where singers born in 2001 are from?",
-        "predicted_sql": "SELECT DISTINCT country FROM singer WHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -539,21 +539,21 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.23,
-            "latency_score": 0.2,
+            "latency": 1.65,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     },
     {
         "query": "What are  the different countries with singers born in 2001?",
-        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -567,16 +567,16 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 11.59,
-            "latency_score": 0.2,
+            "latency": 1.12,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.43999999999999995
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 0.6,
-            "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "performance_score": 1.0,
+            "final_score": 0.38
         }
     }
 ]
