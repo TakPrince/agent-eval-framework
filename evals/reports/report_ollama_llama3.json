@@ -3,7 +3,7 @@
         "model": "ollama_llama3",
         "query": "How many singers do we have?",
         "expected_sql": "SELECT count(*) FROM singer",
-        "predicted_sql": "SELECT COUNT(*) FROM Singers;",
+        "predicted_sql": "SELECT COUNT(*) FROM singer;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -17,7 +17,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 4.54,
+            "latency": 4.0,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -33,12 +33,12 @@
         "model": "ollama_llama3",
         "query": "What is the total number of singers?",
         "expected_sql": "SELECT count(*) FROM singer",
-        "predicted_sql": "SELECT COUNT(*) AS Total_Singers FROM Singers;",
+        "predicted_sql": "SELECT COUNT(*) FROM singer;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
+            "partial_match": 1,
+            "score": 0.5
         },
         "agent_eval": {
             "tool_accuracy": 0.0,
@@ -47,23 +47,23 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 7.14,
+            "latency": 4.61,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
         },
         "final": {
-            "sql_score": 0,
+            "sql_score": 0.5,
             "agent_score": 0.6,
             "performance_score": 0.43999999999999995,
-            "final_score": 0.268
+            "final_score": 0.518
         }
     },
     {
         "model": "ollama_llama3",
         "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT s.name, c.country\nFROM singers s\nJOIN countries c ON s.country_id = c.id\nORDER BY s.age DESC;",
+        "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY DATE_PART('year', age(birthday)) DESC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -77,7 +77,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 13.19,
+            "latency": 11.85,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -93,7 +93,7 @@
         "model": "ollama_llama3",
         "query": "What are the names, countries for every singer in descending order of age?",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT s.name, s.country, s.age\nFROM singers s\nORDER BY s.age DESC;",
+        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATEDIFF(CURDATE(), s.birthday) DESC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -107,7 +107,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.45,
+            "latency": 12.71,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -123,7 +123,7 @@
         "model": "ollama_llama3",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE country='France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -137,7 +137,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.36,
+            "latency": 9.53,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -153,7 +153,7 @@
         "model": "ollama_llama3",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(s.id), MIN(s.id), MAX(s.id)\nFROM singers s\nWHERE s.country = 'France';",
+        "predicted_sql": "SELECT AVG(id) AS avg_id, MIN(id) AS min_id, MAX(id) AS max_id \nFROM singer \nWHERE country='France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -167,7 +167,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 9.26,
+            "latency": 11.46,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -183,7 +183,7 @@
         "model": "ollama_llama3",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, s.release_year\nFROM singers s\nWHERE s.age = (SELECT MIN(age) FROM singers)\nORDER BY s.name;",
+        "predicted_sql": "SELECT s.name, s.birthday AS birth_year \nFROM singer s \nWHERE (SELECT COUNT(*) FROM singer) = \n       ROW_NUMBER() OVER (ORDER BY s.birthday ASC);",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -197,7 +197,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 12.21,
+            "latency": 16.62,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -213,7 +213,7 @@
         "model": "ollama_llama3",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, s.release_year\nFROM singers s\nJOIN songs sgn ON s.id = sgn.singer_id\nORDER BY s.age ASC;\nSELECT * FROM singers WHERE age = (SELECT MIN(age) FROM singers);\nSELECT name, release_year FROM songs WHERE singer_id IN (SELECT id FROM singers ORDER BY age ASC LIMIT 1);",
+        "predicted_sql": "SELECT s.name, 'No year provided' AS release_year\nFROM singer s\nWHERE s.id IN (SELECT MIN(s2.id) \n               FROM singer s2);",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -227,7 +227,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 26.19,
+            "latency": 14.49,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -243,7 +243,7 @@
         "model": "ollama_llama3",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country \nFROM artists \nWHERE birth_year = 2001;",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE YEAR(birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -257,7 +257,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 7.59,
+            "latency": 8.56,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995
@@ -273,7 +273,7 @@
         "model": "ollama_llama3",
         "query": "What are  the different countries with singers born in 2001?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
-        "predicted_sql": "SELECT country \nFROM singers \nWHERE birth_year = 2001",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE YEAR(birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -287,7 +287,7 @@
             "score": 0.6
         },
         "performance_eval": {
-            "latency": 6.76,
+            "latency": 8.5,
             "latency_score": 0.2,
             "error": 0,
             "score": 0.43999999999999995

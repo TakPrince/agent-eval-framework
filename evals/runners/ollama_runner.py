@@ -19,18 +19,33 @@ class OllamaRunner:
 
     def build_prompt(self, query: str) -> str:
         """
-        Prompt for NL → SQL
+        Improved Prompt for NL → SQL (schema-aware)
         """
+
         return f"""
-You are an expert SQL generator.
+    You are an expert SQL generator.
 
-Convert the following natural language query into SQL.
+You must convert natural language into SQL using the given database schema.
 
-Rules:
+DATABASE SCHEMA:
+- Table: singer (id, name, country, birthday)
+
+STRICT RULES:
+- Use ONLY the table and columns from schema
+- Do NOT invent tables (e.g., singers, countries)
+- Do NOT use JOIN unless necessary
+- Use correct column names exactly as given
 - Return ONLY SQL query
-- No explanation
-- No markdown
-- Use simple SQL syntax
+- No explanation, no markdown, no comments
+
+EXAMPLES:
+Q: How many singers do we have?
+A: SELECT COUNT(*) FROM singer;
+
+Q: Show name and country of all singers
+A: SELECT name, country FROM singer;
+
+NOW CONVERT:
 
 Query:
 {query}
@@ -50,7 +65,20 @@ Query:
             response.raise_for_status()
 
             data = response.json()
-            sql_output = data.get("response", "").strip()
+            raw_output = data.get("response", "").strip()
+
+            # 🔥 Clean unwanted text
+            sql_output = raw_output
+
+            # remove markdown if present
+            if "```" in sql_output:
+                sql_output = sql_output.split("```")[1]
+
+            # remove leading text like "Here is SQL:"
+            if "select" in sql_output.lower():
+                sql_output = sql_output[sql_output.lower().find("select"):]
+
+            sql_output = sql_output.strip()
 
             total_latency = round(time.time() - start_time, 2)
 
