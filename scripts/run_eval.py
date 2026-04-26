@@ -29,8 +29,8 @@ def main():
     # {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
     
     #  {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
-      {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
-    #   {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
+    #   {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
+      {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
 
     ]
 
@@ -43,7 +43,6 @@ def main():
 
         print(f"\n\n🚀 Running model: {model_cfg['name']}")
 
-        # 🔁 Select runner
         if model_cfg["type"] == "gemini":
             runner = GeminiRunner(
                 api_key=api_key,
@@ -59,7 +58,6 @@ def main():
 
         results = []
 
-        # 🔁 SAME dataset loop
         for test in dataset:
             response = runner.run(test["query"])
 
@@ -76,7 +74,6 @@ def main():
                 "model": model_cfg["name"],
                 "query": test["query"],
 
-                # 🔥 ADD THIS
                 "expected_sql": test.get("expected_sql"),
 
                 "predicted_sql": response.get("sql"),
@@ -94,52 +91,13 @@ def main():
             print("Query:", test["query"])
             print("FINAL SCORE:", final_eval["final_score"])
 
-        # 🔥 SAVE REPORT PER MODEL
         output_path = f"evals/reports/report_{model_cfg['name']}.json"
         generate_report(results, output_path)
 
-        # 🔥 SUMMARY
         summary = generate_summary(results)
 
         print(f"\n=== SUMMARY ({model_cfg['name']}) ===")
         print(summary)
-
-    for test in dataset:
-        response = runner.run(test["query"])
-
-        sql_eval = evaluate_sql(
-            predicted_sql=response.get("sql"),
-            expected_sql=test.get("expected_sql")
-        )
-
-        agent_eval = evaluate_agent(response, test)
-        perf_eval = evaluate_performance(response)
-        final_eval = combine_scores(sql_eval, agent_eval, perf_eval)
-
-        result = {
-            "query": test["query"],
-            "predicted_sql": response.get("sql"),
-            "sql_eval": sql_eval,
-            "agent_eval": agent_eval,
-            "performance_eval": perf_eval,
-            "final": final_eval
-        }
-
-        results.append(result)
-
-        print("\n---")
-        print("Query:", test["query"])
-        print("FINAL SCORE:", final_eval["final_score"])
-
-
-    # 🔥 Generate report
-    generate_report(results)
-
-    # 🔥 Generate summary
-    summary = generate_summary(results)
-
-    print("\n=== SUMMARY ===")
-    print(summary)
 
 if __name__ == "__main__":
     main()
