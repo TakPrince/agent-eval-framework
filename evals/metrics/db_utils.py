@@ -1,14 +1,16 @@
 # evals/metrics/db_utils.py
-
 import sqlite3
 from utils.logger import get_logger
 
 logger = get_logger()
 
 
-def create_connection(db_path="evals/metrics/test.db"):
+def create_connection(db_path=":memory:"):
     """
-    Create SQLite connection
+    Create SQLite connection.
+    FIX: Changed from file-based "test.db" to in-memory ":memory:"
+    - File-based DB persists stale schema between runs, causing ghost table errors
+    - In-memory DB is always fresh, no cleanup needed, faster for evals
     """
     try:
         conn = sqlite3.connect(db_path)
@@ -20,25 +22,37 @@ def create_connection(db_path="evals/metrics/test.db"):
 
 def setup_dummy_db(conn):
     """
-    Create simple tables for testing
+    Create singer table with sample data for testing.
+    FIX: Was creating a "sales" table — but ALL eval queries use "singer".
+    Every execution_match was returning None → 0 because the table didn't exist.
     """
     try:
         cursor = conn.cursor()
 
-        # Create table
+        # FIX: create singer table (matches schema used in all runners and prompts)
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS sales (
-            id INTEGER PRIMARY KEY,
-            amount INTEGER
-        )
+            CREATE TABLE IF NOT EXISTS singer (
+                id       INTEGER PRIMARY KEY,
+                name     TEXT,
+                country  TEXT,
+                birthday TEXT
+            )
         """)
 
-        # Insert sample data
-        cursor.execute("DELETE FROM sales")
+        # Clear and re-insert so each eval run starts clean
+        cursor.execute("DELETE FROM singer")
 
+        # Sample data — covers all query types in the Spider dataset:
+        # COUNT, ORDER BY birthday, WHERE country, MIN/MAX id, DISTINCT country
         cursor.executemany(
-            "INSERT INTO sales (amount) VALUES (?)",
-            [(100,), (200,), (300,)]
+            "INSERT INTO singer (id, name, country, birthday) VALUES (?, ?, ?, ?)",
+            [
+                (1, "Alice",   "France", "1985-03-12"),
+                (2, "Bob",     "USA",    "1990-07-25"),
+                (3, "Charlie", "France", "1978-11-05"),
+                (4, "Diana",   "UK",     "2001-06-18"),
+                (5, "Eve",     "USA",    "2001-02-28"),
+            ]
         )
 
         conn.commit()
@@ -49,7 +63,7 @@ def setup_dummy_db(conn):
 
 def execute_query(conn, query):
     """
-    Execute SQL and return result
+    Execute SQL and return result.
     """
     if not query:
         return None
@@ -58,7 +72,6 @@ def execute_query(conn, query):
         cursor.execute(query)
         result = cursor.fetchall()
         return result
-
     except Exception as e:
         logger.warning(f"Query execution failed: {e}")
         return None
