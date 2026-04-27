@@ -10,7 +10,7 @@ class GroqRunner:
     Runner for Groq API (OpenAI-compatible)
     """
 
-    def __init__(self, api_key: str, model_name: str = "llama3-70b-8192"):
+    def __init__(self, api_key: str, model_name: str = "llama-3.3-70b-versatile"):
         self.api_key = api_key
         self.model_name = model_name
         self.url = "https://api.groq.com/openai/v1/chat/completions"
@@ -40,9 +40,6 @@ Query:
                 "messages": [
                     {
                         "role": "user",
-                        # FIX: was `"content": [self.build_prompt(query)]` (a list)
-                        # Groq API requires content to be a plain string, not a list
-                        # A list triggers 400 Bad Request every time
                         "content": self.build_prompt(query)
                     }
                 ],
@@ -55,13 +52,11 @@ Query:
                 "Content-Type": "application/json"
             }
 
-            # FIX: Added timeout=(10, 30) — without it, a hung request blocks forever
-            # Groq is fast, so 30s read timeout is more than enough
             response = requests.post(
                 self.url,
                 json=payload,
                 headers=headers,
-                timeout=(10, 30)  # (connect_timeout, read_timeout)
+                timeout=(10, 30)
             )
             response.raise_for_status()
 
@@ -72,7 +67,13 @@ Query:
             sql_output = raw_output.strip()
             if "select" in sql_output.lower():
                 sql_output = sql_output[sql_output.lower().find("select"):]
-            sql_output = sql_output.strip()
+
+            # FIX: keep only the first SQL statement
+            # Groq sometimes returns "SELECT COUNT(*) FROM singer;\n```" or
+            # multiple statements separated by ";"
+            # SQLite raises "You can only execute one statement at a time"
+            # Splitting on ";" and taking parts[0] gives the clean statement only
+            sql_output = sql_output.split(";")[0].strip()
 
             latency = round(time.time() - start_time, 2)
 
@@ -85,7 +86,6 @@ Query:
                 "error": None
             }
 
-        # FIX: Split into specific except blocks for clearer error diagnosis
         except requests.exceptions.Timeout:
             logger.error("Groq timeout — request took longer than 30s")
             return {
@@ -98,7 +98,6 @@ Query:
             }
 
         except requests.exceptions.HTTPError as e:
-            # Logs the full HTTP error body so you can see exactly what Groq rejected
             logger.error(f"Groq HTTP error: {e} | Response: {e.response.text}")
             return {
                 "query": query,

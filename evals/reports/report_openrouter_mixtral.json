@@ -18,16 +18,16 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.49,
-            "latency_score": 1.0,
+            "latency": 3.17,
+            "latency_score": 0.7,
             "error": 0,
-            "score": 1.0
+            "score": 0.79
         },
         "final": {
             "sql_score": 1,
             "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
+            "performance_score": 0.79,
+            "final_score": 0.9580000000000001
         }
     },
     {
@@ -49,7 +49,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.39,
+            "latency": 1.43,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -111,7 +111,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 0.99,
+            "latency": 1.49,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -142,7 +142,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.63,
+            "latency": 1.2,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -173,23 +173,23 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 2.81,
-            "latency_score": 0.7,
+            "latency": 1.72,
+            "latency_score": 1.0,
             "error": 0,
-            "score": 0.79
+            "score": 1.0
         },
         "final": {
             "sql_score": 0,
             "agent_score": 1.0,
-            "performance_score": 0.79,
-            "final_score": 0.458
+            "performance_score": 1.0,
+            "final_score": 0.5
         }
     },
     {
         "model": "openrouter_mixtral",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "sql\n-- The query cannot be answered with the given schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'song' table with columns like 'title', 'release_year', and 'singer_id' would be needed.",
+        "predicted_sql": "sql\n-- The query cannot be answered with the given database schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'song' table with columns like 'title', 'release_year', and 'singer_id' would be needed.",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -204,7 +204,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.57,
+            "latency": 1.54,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -220,7 +220,7 @@
         "model": "openrouter_mixtral",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "sql\n-- The query cannot be answered with the given database schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'songs' table with columns like 'singer_id' and 'release_year' would be needed.",
+        "predicted_sql": "SELECT name\nFROM singer\nORDER BY birthday DESC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -235,7 +235,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.84,
+            "latency": 1.53,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -266,7 +266,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.26,
+            "latency": 1.92,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -297,7 +297,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.09,
+            "latency": 1.13,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0

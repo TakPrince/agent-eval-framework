@@ -15,8 +15,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.31,
-                "generator": 1.0
+                "planner": 0.63,
+                "generator": 1.31
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -24,7 +24,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.31,
+            "latency": 1.95,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -52,8 +52,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.21,
-                "generator": 0.72
+                "planner": 0.31,
+                "generator": 1.54
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -61,7 +61,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 0.93,
+            "latency": 1.85,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -89,8 +89,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.36,
-                "generator": 0.78
+                "planner": 0.3,
+                "generator": 1.69
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -98,7 +98,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.14,
+            "latency": 1.99,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -126,8 +126,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.31,
-                "generator": 0.71
+                "planner": 0.39,
+                "generator": 2.94
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -135,23 +135,23 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.02,
-            "latency_score": 1.0,
+            "latency": 3.32,
+            "latency_score": 0.7,
             "error": 0,
-            "score": 1.0
+            "score": 0.79
         },
         "final": {
             "sql_score": 1,
             "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
+            "performance_score": 0.79,
+            "final_score": 0.9580000000000001
         }
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS minimum\\_id, MAX(id) AS maximum\\_id\nFROM singer\nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -163,8 +163,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.51,
-                "generator": 1.02
+                "planner": 0.62,
+                "generator": 0.87
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -172,7 +172,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.53,
+            "latency": 1.49,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -188,7 +188,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country IN ('France', 'French');",
+        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS minimum\\_id, MAX(id) AS maximum\\_id\nFROM singer\nWHERE country IN ('France', 'French');",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -200,8 +200,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.61,
-                "generator": 1.02
+                "planner": 0.56,
+                "generator": 1.23
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -209,7 +209,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.64,
+            "latency": 1.79,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -225,7 +225,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, EXTRACT(YEAR FROM MIN(birthday)) AS release_year\nFROM singer\nGROUP BY name;",
+        "predicted_sql": "SELECT min(birthday) AS min_birthday\n    FROM singer\n)\nSELECT name\nFROM singer\nJOIN youngest_singer ON singer.birthday = youngest_singer.min_birthday;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -238,7 +238,7 @@
             "agents_succeeded": 2,
             "agent_latencies": {
                 "planner": 0.82,
-                "generator": 0.82
+                "generator": 1.43
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -246,23 +246,23 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.64,
-            "latency_score": 1.0,
+            "latency": 2.25,
+            "latency_score": 0.7,
             "error": 0,
-            "score": 1.0
+            "score": 0.79
         },
         "final": {
             "sql_score": 0,
             "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
+            "performance_score": 0.79,
+            "final_score": 0.458
         }
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, MIN(birthday) as \"youngest singer's birthday\"\nFROM singer\nGROUP BY name\nORDER BY MIN(birthday) ASC\nLIMIT 1;",
+        "predicted_sql": "SELECT name, MIN(birthday) AS \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nHAVING MIN(birthday) = (SELECT MIN(birthday) FROM singer);",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -274,8 +274,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.41,
-                "generator": 0.82
+                "planner": 0.51,
+                "generator": 1.34
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -283,7 +283,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.23,
+            "latency": 1.85,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -299,7 +299,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE birthday LIKE '%2001';",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -311,8 +311,8 @@
             "agents_run": 2,
             "agents_succeeded": 2,
             "agent_latencies": {
-                "planner": 0.51,
-                "generator": 0.71
+                "planner": 0.4,
+                "generator": 1.54
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -320,7 +320,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.23,
+            "latency": 1.94,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
@@ -349,7 +349,7 @@
             "agents_succeeded": 2,
             "agent_latencies": {
                 "planner": 0.41,
-                "generator": 0.82
+                "generator": 0.81
             },
             "tool_accuracy": 1.0,
             "efficiency": 1.0,
@@ -357,7 +357,7 @@
             "score": 1.0
         },
         "performance_eval": {
-            "latency": 1.23,
+            "latency": 1.22,
             "latency_score": 1.0,
             "error": 0,
             "score": 1.0
