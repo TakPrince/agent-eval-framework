@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 from evals.runners.ollama_runner import OllamaRunner
 from evals.runners.groq_runner import GroqRunner
 from evals.runners.openrouter_runner import OpenRouterRunner
+from evals.runners.multi_agent_runner import MultiAgentRunner
 
 
 load_dotenv()
@@ -26,11 +27,19 @@ def main():
     models = [
     # {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
     # {"name": "gemini_pro", "type": "gemini", "model": "gemini-1.5-pro"},
-    # {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
+    #  {"name": "gemini_lite", "type": "gemini", "model": "gemini-2.5-flash-lite"},
     
-    #  {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
-    #   {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
-      {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
+    #   {"name": "groq_llama3", "type": "groq", "model": "llama-3.3-70b-versatile"},
+        {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
+    #    {"name": "ollama_llama3", "type": "ollama", "model": "llama3"},
+     
+        {
+            "name": "multi_agent_groq_openrouter",
+            "type": "multi_agent",
+            # Planner: Groq (fast, good at structured reasoning)
+            # Generator: OpenRouter (strong SQL generation)
+        }
+
 
     ]
 
@@ -54,6 +63,21 @@ def main():
             runner = OpenRouterRunner(api_key=openrouter_key, model_name=model_cfg["model"])
         elif model_cfg["type"] == "ollama":
             runner = OllamaRunner(model_name=model_cfg["model"])
+        elif model_cfg["type"] == "multi_agent":
+            # Agent 1 — Planner: Groq (llama-3.3-70b-versatile)
+            # Fast at structured analysis, identifies tables/columns/filters needed
+            planner = GroqRunner(
+                api_key=groq_key,
+                model_name="llama-3.3-70b-versatile"
+            )
+            # Agent 2 — Generator: OpenRouter (mistralai/mixtral-8x7b-instruct)
+            # Takes planner output and generates the final SQL
+            generator = OpenRouterRunner(
+                api_key=openrouter_key,
+                model_name="mistralai/mixtral-8x7b-instruct"
+            )
+            runner = MultiAgentRunner(planner=planner, generator=generator)
+
 
 
         results = []
