@@ -8,7 +8,7 @@ from evals.test_cases.dataset_loader import load_dataset
 from evals.test_cases.validator import validate_dataset
 from evals.evaluators.final_evaluator import combine_scores
 from evals.reports.report_generator import generate_report, generate_summary
-from evals.reports.excel_exporter import generate_excel          # NEW
+from evals.reports.excel_exporter import generate_excel
 from evals.runners.gemini_runner import GeminiRunner
 import os
 from dotenv import load_dotenv
@@ -27,12 +27,12 @@ openrouter_key = os.getenv("OPENROUTER_API_KEY")
 def main():
 
     models = [
-        # {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
+        #  {"name": "gemini_flash", "type": "gemini", "model": "gemini-1.5-flash"},
         # {"name": "gemini_pro",   "type": "gemini", "model": "gemini-1.5-pro"},
         # {"name": "gemini_lite",  "type": "gemini", "model": "gemini-2.5-flash-lite"},
 
-        {"name": "groq_llama3",        "type": "groq",       "model": "llama-3.3-70b-versatile"},
-        # {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
+          {"name": "groq_llama3",        "type": "groq",       "model": "llama-3.3-70b-versatile"},
+        #  {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
         # {"name": "ollama_llama3",    "type": "ollama",     "model": "llama3"},
 
         # {
