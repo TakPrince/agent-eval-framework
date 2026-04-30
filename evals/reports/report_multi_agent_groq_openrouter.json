@@ -31,13 +31,27 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.693599961072323e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
                     "sql": "SELECT COUNT(id) FROM singer;"
                 },
                 "error": null,
-                "latency": 3.6632939920000354
+                "latency": 4.177698852999583
             },
             {
                 "agent_name": "executor",
@@ -48,7 +62,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010204939999312046
+                "latency": 0.0010795010002766503
             }
         ]
     },
@@ -84,13 +98,25 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": []
+                },
+                "error": null,
+                "latency": 1.7375999959767796e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
                     "sql": "SELECT COUNT(id) FROM singer;"
                 },
                 "error": null,
-                "latency": 1.3273317570001382
+                "latency": 1.7717855319997398
             },
             {
                 "agent_name": "executor",
@@ -101,7 +127,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010067199998502474
+                "latency": 0.001238076999925397
             }
         ]
     },
@@ -137,13 +163,29 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "country",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.6600999717629747e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday DESC;"
                 },
                 "error": null,
-                "latency": 1.5114798690001408
+                "latency": 1.518432712000049
             },
             {
                 "agent_name": "executor",
@@ -163,7 +205,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0012367539998194843
+                "latency": 0.0010255870001856238
             }
         ]
     },
@@ -199,13 +241,28 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.8480000107956585e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
                     "sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;"
                 },
                 "error": null,
-                "latency": 1.5435375330000625
+                "latency": 2.1790709710003284
             },
             {
                 "agent_name": "executor",
@@ -225,7 +282,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0013562900001033995
+                "latency": 0.0009871420002127707
             }
         ]
     },
@@ -233,7 +290,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';",
+        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -261,20 +318,34 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.8770000224321848e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';"
+                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France';"
                 },
                 "error": null,
-                "latency": 1.7006814880001002
+                "latency": 10.424761498999942
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: unrecognized token: \"\\\"",
-                "latency": 0.0007737139999335341
+                "latency": 0.001135000999965996
             }
         ]
     },
@@ -282,7 +353,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';",
+        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS minimum\\_id, MAX(id) AS maximum\\_id\nFROM singer\nWHERE country IN ('France', 'French');",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -293,43 +364,51 @@
             "mode": "single_agent",
             "tool_accuracy": 1.0,
             "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "failure_rate": 1.0,
+            "score": 0.45
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 0.45,
+            "performance_score": 0,
+            "final_score": 0.135
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.2105999960331246e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';"
+                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS minimum\\_id, MAX(id) AS maximum\\_id\nFROM singer\nWHERE country IN ('France', 'French');"
                 },
                 "error": null,
-                "latency": 1.931196495999984
+                "latency": 2.5396756170002845
             },
             {
                 "agent_name": "executor",
-                "success": true,
-                "output": [
-                    [
-                        null,
-                        null,
-                        null
-                    ]
-                ],
-                "error": null,
-                "latency": 0.001560574999984965
+                "success": false,
+                "output": null,
+                "error": "OperationalError: unrecognized token: \"\\\"",
+                "latency": 0.0009458210001866973
             }
         ]
     },
@@ -337,7 +416,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, MIN(birthday) AS \"release year of the song\"\nFROM singer\nGROUP BY name;",
+        "predicted_sql": "SELECT min(birthday) AS min_birthday\n    FROM singer\n)\nSELECT name\nFROM singer\nJOIN young_singer ON singer.birthday = young_singer.min_birthday;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -348,50 +427,51 @@
             "mode": "single_agent",
             "tool_accuracy": 1.0,
             "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "failure_rate": 1.0,
+            "score": 0.45
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 0.45,
+            "performance_score": 0,
+            "final_score": 0.135
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 1.8427999748382717e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, MIN(birthday) AS \"release year of the song\"\nFROM singer\nGROUP BY name;"
+                    "sql": "SELECT min(birthday) AS min_birthday\n    FROM singer\n)\nSELECT name\nFROM singer\nJOIN young_singer ON singer.birthday = young_singer.min_birthday;"
                 },
                 "error": null,
-                "latency": 3.2783062299999983
+                "latency": 2.0315124559997457
             },
             {
                 "agent_name": "executor",
-                "success": true,
-                "output": [
-                    [
-                        "A",
-                        "1990"
-                    ],
-                    [
-                        "B",
-                        "1985"
-                    ],
-                    [
-                        "C",
-                        "1992"
-                    ]
-                ],
-                "error": null,
-                "latency": 0.0015676890000122512
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \")\": syntax error",
+                "latency": 0.0011792559998866636
             }
         ]
     },
@@ -399,7 +479,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, MIN(birthday) as \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nORDER BY youngest_singer_birthday ASC\nLIMIT 1;",
+        "predicted_sql": "SELECT name, MIN(birthday) AS youngest_birthday\nFROM singer\nGROUP BY name\nORDER BY youngest_birthday ASC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -427,13 +507,27 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 2.518599967515911e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, MIN(birthday) as \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nORDER BY youngest_singer_birthday ASC\nLIMIT 1;"
+                    "sql": "SELECT name, MIN(birthday) AS youngest_birthday\nFROM singer\nGROUP BY name\nORDER BY youngest_birthday ASC\nLIMIT 1;"
                 },
                 "error": null,
-                "latency": 2.3113147290000597
+                "latency": 10.632500422000248
             },
             {
                 "agent_name": "executor",
@@ -445,7 +539,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.001348137999912069
+                "latency": 0.0018074399999932211
             }
         ]
     },
@@ -453,7 +547,7 @@
         "model": "multi_agent_groq_openrouter",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE birthday = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -464,37 +558,51 @@
             "mode": "single_agent",
             "tool_accuracy": 1.0,
             "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "failure_rate": 1.0,
+            "score": 0.45
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 0.45,
+            "performance_score": 0,
+            "final_score": 0.135
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.08619999284565e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE birthday = 2001;"
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
                 },
                 "error": null,
-                "latency": 1.1137935239999024
+                "latency": 3.8692192799999248
             },
             {
                 "agent_name": "executor",
-                "success": true,
-                "output": [],
-                "error": null,
-                "latency": 0.0017791200000374374
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0005156770002940902
             }
         ]
     },
@@ -530,20 +638,34 @@
         },
         "steps": [
             {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.859500025602756e-05
+            },
+            {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
                     "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
                 },
                 "error": null,
-                "latency": 1.518223240999987
+                "latency": 1.3119613290000416
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0014264250000906031
+                "latency": 0.001255813999705424
             }
         ]
     }
