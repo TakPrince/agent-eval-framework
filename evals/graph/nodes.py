@@ -1,67 +1,52 @@
 """
 evals/graph/nodes.py
 --------------------
-LangGraph node functions for Stage 1.
+LangGraph node functions — Phase 3: retry loop added to executor.
 
-Design rules (STRICT)
-~~~~~~~~~~~~~~~~~~~~~
-* Each node receives AgentState, mutates it in-place, and returns it.
-* Nodes ONLY wrap existing functionality — they add NO new logic.
-* generator_node  → delegates entirely to runner.run()
-* executor_node   → delegates entirely to db_utils.execute_sql()
-* Both nodes catch ALL exceptions so the graph never crashes the
-  outer evaluation loop.  Errors are stored in state, not raised.
+Changes from Phase 2
+~~~~~~~~~~~~~~~~~~~~
+* MAX_RETRIES = 2 constant added
+* make_executor_node() now accepts runner for retry regeneration
+* executor_node retries up to MAX_RETRIES times on SQL failure:
+    1. Log failed execution attempt
+    2. Call runner with correction prompt  → log as "retry_generator"
+    3. Re-attempt execution               → log as "executor" again
+* generator_node and extractor_node are UNCHANGED
+* Behaviour for successful queries is identical to Phase 2
 """
 
 from __future__ import annotations
 
 import time
-import traceback
 from typing import Any, Callable
 
 from evals.graph.state import AgentState
+from evals.metrics.db_utils import execute_sql
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Config
+# ─────────────────────────────────────────────────────────────────────────────
+
+MAX_RETRIES = 2
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# generator_node
+# generator_node  (UNCHANGED from Phase 2)
 # ─────────────────────────────────────────────────────────────────────────────
 
 def make_generator_node(runner: Any) -> Callable[[AgentState], AgentState]:
-    """
-    Factory that closes over a runner instance and returns a LangGraph-
-    compatible node function.
-
-    Using a factory (rather than a class) keeps the node signature the
-    simple `state → state` form that LangGraph expects, while still
-    letting us inject different runner types at graph-build time.
-
-    Parameters
-    ----------
-    runner : any existing runner (GeminiRunner, GroqRunner, …)
-             Must expose a `.run(query: str) -> dict` method.
-
-    Returns
-    -------
-    Callable[[AgentState], AgentState]
-    """
+    """Factory: closes over a runner, returns a LangGraph node function."""
 
     def generator_node(state: AgentState) -> AgentState:
         agent_name = "generator"
         t0 = time.perf_counter()
 
         try:
-            # ── delegate entirely to the existing runner ──────────
             raw_response: dict = runner.run(state.query)
-
             sql = raw_response.get("sql")
             latency = time.perf_counter() - t0
 
-            # ── mutate state ──────────────────────────────────────
             state.sql = sql
-            # Preserve any extra keys the runner returned so that
-            # executor_node or future nodes can inspect them.
-            state._runner_response = raw_response  # type: ignore[attr-defined]
-
             state.append_step(
                 agent_name=agent_name,
                 success=True,
@@ -69,10 +54,9 @@ def make_generator_node(runner: Any) -> Callable[[AgentState], AgentState]:
                 latency=latency,
             )
 
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             latency = time.perf_counter() - t0
             err_msg = f"{type(exc).__name__}: {exc}"
-
             state.error = err_msg
             state.append_step(
                 agent_name=agent_name,
@@ -83,78 +67,118 @@ def make_generator_node(runner: Any) -> Callable[[AgentState], AgentState]:
 
         return state
 
-    # Attach a readable name for LangGraph's internal graph representation
     generator_node.__name__ = "generator_node"
     return generator_node
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# executor_node
+# executor_node  (Phase 3 — retry loop)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def make_executor_node() -> Callable[[AgentState], AgentState]:
+def make_executor_node(runner: Any) -> Callable[[AgentState], AgentState]:
     """
-    Returns a LangGraph-compatible executor node that calls the existing
-    db_utils.execute_sql() function.
+    Factory: closes over runner for retry regeneration.
 
-    The import is deferred to inside the factory so that environments
-    without a live DB (e.g. CI without credentials) can still import
-    this module without crashing.
+    Retry flow (triggered only on execution failure):
+        executor (fail)
+            → retry_generator: runner.run(correction_prompt)
+            → executor (retry)
+        Repeat up to MAX_RETRIES times, then give up and store error.
+
+    For successful queries the behaviour is identical to Phase 2 —
+    the retry branch is never entered.
     """
 
     def executor_node(state: AgentState) -> AgentState:
-        agent_name = "executor"
-        t0 = time.perf_counter()
 
-        # ── skip if upstream generator already failed ─────────────
-        if state.sql is None:
-            latency = time.perf_counter() - t0
+        # ── guard: no SQL from generator ─────────────────────────
+        if not state.sql:
+            t0 = time.perf_counter()
             state.append_step(
-                agent_name=agent_name,
+                agent_name="executor",
                 success=False,
-                error="Skipped: no SQL produced by generator",
-                latency=latency,
+                error="Skipped: generator produced no SQL",
+                latency=time.perf_counter() - t0,
             )
             return state
 
-        try:
-            # ── import existing utility (NOT new logic) ───────────
-            from evals.metrics.db_utils import execute_sql  # type: ignore[import]
+        # ── attempt 0 + up to MAX_RETRIES correction attempts ────
+        last_error: str = ""
 
-            result = execute_sql(state.sql)
-            latency = time.perf_counter() - t0
+        for attempt in range(MAX_RETRIES + 1):   # 0 = first try, 1-2 = retries
 
-            state.execution_result = result
-            state.append_step(
-                agent_name=agent_name,
-                success=True,
-                output=result,
-                latency=latency,
-            )
+            # ── execute current state.sql ─────────────────────────
+            t0 = time.perf_counter()
+            try:
+                result  = execute_sql(state.sql)
+                latency = time.perf_counter() - t0
 
-        # except ImportError:
-        #     # db_utils not available in this environment — record the
-        #     # skip cleanly so metrics are not affected.
-        #     latency = time.perf_counter() - t0
-        #     state.append_step(
-        #         agent_name=agent_name,
-        #         success=False,
-        #         error="db_utils not available in this environment (ImportError)",
-        #         latency=latency,
-        #     )
+                state.execution_result = result
+                state.error            = None      # clear any previous error
+                state.append_step(
+                    agent_name="executor",
+                    success=True,
+                    output=result,
+                    latency=latency,
+                )
+                return state                       # ✅ success — exit immediately
 
-        except Exception as exc:  # noqa: BLE001
-            latency = time.perf_counter() - t0
-            err_msg = f"{type(exc).__name__}: {exc}"
+            except Exception as exc:
+                latency    = time.perf_counter() - t0
+                last_error = f"{type(exc).__name__}: {exc}"
 
-            state.error = err_msg
-            state.append_step(
-                agent_name=agent_name,
-                success=False,
-                error=err_msg,
-                latency=latency,
-            )
+                state.append_step(
+                    agent_name="executor",
+                    success=False,
+                    error=last_error,
+                    latency=latency,
+                )
 
+            # ── no retries left after final attempt ───────────────
+            if attempt == MAX_RETRIES:
+                break
+
+            # ── retry_generator: ask runner to fix the SQL ────────
+            correction_prompt = f"""
+                                    You are an expert SQL fixer.
+                                    The following SQL failed:
+                                    {state.sql}
+                                    Error:
+                                    {last_error}
+                                    Fix the SQL and return ONLY the corrected SQL query.
+                                    Do not include explanations.
+                                    """
+
+            t0 = time.perf_counter()
+            try:
+                retry_response  = runner.run(correction_prompt)
+                corrected_sql   = retry_response.get("sql") or state.sql
+                latency         = time.perf_counter() - t0
+
+                state.sql = corrected_sql          # update sql for next attempt
+                state.append_step(
+                    agent_name="retry_generator",
+                    success=True,
+                    output={"sql": corrected_sql, "attempt": attempt + 1},
+                    latency=latency,
+                )
+
+            except Exception as rexc:
+                latency = time.perf_counter() - t0
+                rerr    = f"{type(rexc).__name__}: {rexc}"
+
+                # Runner itself failed — log and stop retrying
+                state.error = rerr
+                state.append_step(
+                    agent_name="retry_generator",
+                    success=False,
+                    error=rerr,
+                    latency=latency,
+                )
+                break                              # no point retrying further
+
+        # ── all attempts exhausted without success ────────────────
+        state.error = last_error
         return state
 
     executor_node.__name__ = "executor_node"

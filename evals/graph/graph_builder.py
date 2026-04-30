@@ -3,15 +3,14 @@ evals/graph/graph_builder.py
 ----------------------------
 Assembles the LangGraph pipeline.
 
-Topology (Phase 2):
+Topology (Phase 3):
     START → extractor → generator → executor → END
+    (executor internally retries up to MAX_RETRIES times on failure)
 
-Changes from Stage 1
+Changes from Phase 2
 ~~~~~~~~~~~~~~~~~~~~
-+ Imported make_extractor_node
-+ extractor node added before generator
-+ START now edges to extractor, not generator
-! generator → executor → END edges are unchanged
++ make_executor_node() now receives runner for retry_generator calls
+! topology and all other edges are UNCHANGED
 """
 
 from __future__ import annotations
@@ -43,9 +42,9 @@ def build_graph(runner: Any):
     """
 
     # ── instantiate node functions via factories ──────────────────
-    extractor = make_extractor_node()          # Phase 2 — no runner needed
+    extractor = make_extractor_node()
     generator = make_generator_node(runner)
-    executor  = make_executor_node()
+    executor  = make_executor_node(runner)     # Phase 3 — runner needed for retry
 
     # ── wire the graph ────────────────────────────────────────────
     graph = StateGraph(AgentState)
