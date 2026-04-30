@@ -15,25 +15,27 @@ def load_json_dataset(path: str):
         return []
 
 
-# 🔥 NEW: failure/debug test injector (Phase 3 verification)
+# 🔥 Phase 3 failure/debug test injector
 def inject_failure_cases(dataset: list):
     """
     Adds temporary failure cases to test retry logic (Phase 3).
-    Does NOT modify original dataset structure.
+    Ensures compatibility with validator by including 'id'.
     """
 
     failure_tests = [
         {
+            "id": "fail_1",
             "query": "Give me singer data with wrong SQL syntax",
             "expected_sql": "SELECT name FROM singer"
         },
         {
+            "id": "fail_2",
             "query": "List singers but use invalid SQL",
             "expected_sql": "SELECT name FROM singer"
         }
     ]
 
-    logger.info("Injecting Phase 3 failure test cases")
+    logger.info("🔥 Injecting Phase 3 failure test cases")
 
     return dataset + failure_tests
 
@@ -52,7 +54,7 @@ def load_dataset(config: dict):
     else:
         raise ValueError(f"Unsupported dataset type: {dataset_type}")
 
-    # 🔥 NEW: Optional Phase 3 debug mode
+    # ✅ Controlled injection (debug mode only)
     if config.get("debug_phase3", False):
         dataset = inject_failure_cases(dataset)
 
