@@ -13,22 +13,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 3.17,
-            "latency_score": 0.7,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 0.79
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 0.79,
-            "final_score": 0.9580000000000001
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT count(*) FROM singer"
+                },
+                "error": null,
+                "latency": 1.9402259109999704
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.0868999854428694e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -44,22 +62,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.43,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT count(*) FROM singer"
+                },
+                "error": null,
+                "latency": 1.4776750610001272
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.907100019911013e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -75,22 +111,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.4,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;"
+                },
+                "error": null,
+                "latency": 1.8897419510001328
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.254300011372834e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -106,22 +160,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.49,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, country\nFROM singer\nORDER BY birthday DESC;"
+                },
+                "error": null,
+                "latency": 1.794301040999926
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.090599991788622e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -137,22 +209,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.2,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singer\nWHERE country = 'France';"
+                },
+                "error": null,
+                "latency": 1.269600599000114
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.1454000034282217e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -168,22 +258,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.72,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT AVG(id), MIN(id), MAX(id)\nFROM singer\nWHERE country = 'France';"
+                },
+                "error": null,
+                "latency": 2.0350425890001134
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.224600007139088e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -199,22 +307,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.54,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "sql\n-- The query cannot be answered with the given database schema.\n-- The 'singer' table does not contain information about songs or their release years.\n-- To answer this query, a 'song' table with columns like 'title', 'release_year', and 'singer_id' would be needed."
+                },
+                "error": null,
+                "latency": 1.492868862000023
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.3187000124380575e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -230,22 +356,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.53,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name\nFROM singer\nORDER BY birthday DESC\nLIMIT 1;"
+                },
+                "error": null,
+                "latency": 1.7888018099999954
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.1312999933797983e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -261,22 +405,40 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.92,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';"
+                },
+                "error": null,
+                "latency": 2.1666281200000412
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.0458999870243133e-05
+            }
+        ]
     },
     {
         "model": "openrouter_mixtral",
@@ -292,21 +454,39 @@
         "agent_eval": {
             "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.13,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE STRFTIME('%Y', birthday) = '2001';"
+                },
+                "error": null,
+                "latency": 2.032744334999961
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "db_utils not available in this environment (ImportError)",
+                "latency": 2.2963999981584493e-05
+            }
+        ]
     }
 ]

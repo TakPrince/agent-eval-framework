@@ -11,30 +11,46 @@
             "score": 1
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.63,
-                "generator": 1.31
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.95,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT COUNT(id) FROM singer;"
+                },
+                "error": null,
+                "latency": 3.6632939920000354
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        3
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0010204939999312046
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -48,30 +64,46 @@
             "score": 1
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.31,
-                "generator": 1.54
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.85,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 1.0
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT COUNT(id) FROM singer;"
+                },
+                "error": null,
+                "latency": 1.3273317570001382
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        3
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0010067199998502474
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -85,30 +117,55 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.3,
-                "generator": 1.69
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.99,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, country \nFROM singer \nORDER BY birthday DESC;"
+                },
+                "error": null,
+                "latency": 1.5114798690001408
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "C",
+                        "USA"
+                    ],
+                    [
+                        "A",
+                        "USA"
+                    ],
+                    [
+                        "B",
+                        "UK"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0012367539998194843
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -122,36 +179,61 @@
             "score": 1
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.39,
-                "generator": 2.94
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 3.32,
-            "latency_score": 0.7,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 0.79
+            "score": 0.3
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 1.0,
-            "performance_score": 0.79,
-            "final_score": 0.9580000000000001
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.815
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;"
+                },
+                "error": null,
+                "latency": 1.5435375330000625
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "B",
+                        "UK"
+                    ],
+                    [
+                        "A",
+                        "USA"
+                    ],
+                    [
+                        "C",
+                        "USA"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0013562900001033995
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -159,36 +241,48 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.62,
-                "generator": 0.87
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
-            "failure_rate": 0.0,
-            "score": 1.0
+            "efficiency": 0.5,
+            "failure_rate": 1.0,
+            "score": 0.45
         },
         "performance_eval": {
-            "latency": 1.49,
-            "latency_score": 1.0,
-            "error": 0,
-            "score": 1.0
+            "latency": null,
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.45,
+            "performance_score": 0,
+            "final_score": 0.135
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';"
+                },
+                "error": null,
+                "latency": 1.7006814880001002
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: unrecognized token: \"\\\"",
+                "latency": 0.0007737139999335341
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS minimum\\_id, MAX(id) AS maximum\\_id\nFROM singer\nWHERE country IN ('France', 'French');",
+        "predicted_sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -196,36 +290,54 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.56,
-                "generator": 1.23
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.79,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';"
+                },
+                "error": null,
+                "latency": 1.931196495999984
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        null,
+                        null,
+                        null
+                    ]
+                ],
+                "error": null,
+                "latency": 0.001560574999984965
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT min(birthday) AS min_birthday\n    FROM singer\n)\nSELECT name\nFROM singer\nJOIN youngest_singer ON singer.birthday = youngest_singer.min_birthday;",
+        "predicted_sql": "SELECT name, MIN(birthday) AS \"release year of the song\"\nFROM singer\nGROUP BY name;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -233,36 +345,61 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.82,
-                "generator": 1.43
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 2.25,
-            "latency_score": 0.7,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 0.79
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 0.79,
-            "final_score": 0.458
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, MIN(birthday) AS \"release year of the song\"\nFROM singer\nGROUP BY name;"
+                },
+                "error": null,
+                "latency": 3.2783062299999983
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "A",
+                        "1990"
+                    ],
+                    [
+                        "B",
+                        "1985"
+                    ],
+                    [
+                        "C",
+                        "1992"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0015676890000122512
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, MIN(birthday) AS \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nHAVING MIN(birthday) = (SELECT MIN(birthday) FROM singer);",
+        "predicted_sql": "SELECT name, MIN(birthday) as \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nORDER BY youngest_singer_birthday ASC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -270,36 +407,53 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.51,
-                "generator": 1.34
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.85,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, MIN(birthday) as \"youngest_singer_birthday\"\nFROM singer\nGROUP BY name\nORDER BY youngest_singer_birthday ASC\nLIMIT 1;"
+                },
+                "error": null,
+                "latency": 2.3113147290000597
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "B",
+                        "1985"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.001348137999912069
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE birthday = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -307,30 +461,42 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.4,
-                "generator": 1.54
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
+            "efficiency": 0.5,
             "failure_rate": 0.0,
-            "score": 1.0
+            "score": 0.85
         },
         "performance_eval": {
-            "latency": 1.94,
-            "latency_score": 1.0,
+            "latency": null,
+            "latency_score": 0.0,
             "error": 0,
-            "score": 1.0
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE birthday = 2001;"
+                },
+                "error": null,
+                "latency": 1.1137935239999024
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [],
+                "error": null,
+                "latency": 0.0017791200000374374
+            }
+        ]
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -344,29 +510,41 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "multi_agent",
-            "agents_run": 2,
-            "agents_succeeded": 2,
-            "agent_latencies": {
-                "planner": 0.41,
-                "generator": 0.81
-            },
+            "mode": "single_agent",
             "tool_accuracy": 1.0,
-            "efficiency": 1.0,
-            "failure_rate": 0.0,
-            "score": 1.0
+            "efficiency": 0.5,
+            "failure_rate": 1.0,
+            "score": 0.45
         },
         "performance_eval": {
-            "latency": 1.22,
-            "latency_score": 1.0,
-            "error": 0,
-            "score": 1.0
+            "latency": null,
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 1.0,
-            "performance_score": 1.0,
-            "final_score": 0.5
-        }
+            "agent_score": 0.45,
+            "performance_score": 0,
+            "final_score": 0.135
+        },
+        "steps": [
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
+                },
+                "error": null,
+                "latency": 1.518223240999987
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0014264250000906031
+            }
+        ]
     }
 ]

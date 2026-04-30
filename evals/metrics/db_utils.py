@@ -75,3 +75,42 @@ def execute_query(conn, query):
     except Exception as e:
         logger.warning(f"Query execution failed: {e}")
         return None
+    
+import sqlite3
+
+def execute_sql(sql):
+    """
+    Execute SQL query on in-memory SQLite DB.
+    This reuses the same schema used in sql_metrics.
+    """
+
+    conn = sqlite3.connect(":memory:")
+    cursor = conn.cursor()
+
+    # 🔥 SAME TABLE YOU USED EARLIER
+    cursor.execute("""
+        CREATE TABLE singer (
+            id INTEGER,
+            name TEXT,
+            country TEXT,
+            birthday TEXT
+        )
+    """)
+
+    # Sample data (same as before)
+    cursor.executemany(
+        "INSERT INTO singer VALUES (?, ?, ?, ?)",
+        [
+            (1, "A", "USA", "1990"),
+            (2, "B", "UK", "1985"),
+            (3, "C", "USA", "1992"),
+        ]
+    )
+
+    try:
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        return result
+
+    finally:
+        conn.close()
