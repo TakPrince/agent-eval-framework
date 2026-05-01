@@ -18,6 +18,8 @@ from evals.runners.multi_agent_runner import MultiAgentRunner
 
 # ── Stage 1: graph imports ────────────────────────────────────────────────────
 from evals.graph import AgentState, build_graph
+# ── Phase 7: experiment tracking ─────────────────────────────────────────────
+from utils.experiment_tracker import ExperimentTracker
 # ─────────────────────────────────────────────────────────────────────────────
 
 load_dotenv()
@@ -39,7 +41,6 @@ def run_with_graph(runner, query: str, model_name: str) -> dict:
             model=model_name,
         )
 
-        # LangGraph returns a dict, not the original dataclass
         result = graph.invoke(initial_state)
 
         if hasattr(result, "to_response_dict"):
@@ -51,12 +52,10 @@ def run_with_graph(runner, query: str, model_name: str) -> dict:
                 "error": result.get("error"),
                 "steps": [vars(s) if not isinstance(s, dict) else s for s in result.get("steps", [])],
             }
-        # Extract fields directly from the returned dict
         return {
             "sql":              result.get("sql"),
             "execution_result": result.get("execution_result"),
             "error":            result.get("error"),
-            # ── safe: handles both StepRecord objects and plain dicts ────────
             "steps":            [vars(s) if not isinstance(s, dict) else s for s in result.get("steps", [])],
         }
 
@@ -74,6 +73,7 @@ def run_with_graph(runner, query: str, model_name: str) -> dict:
         fallback_response.setdefault("steps", [])
         return fallback_response
 
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
@@ -89,14 +89,18 @@ def main():
         #  {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
         #  {"name": "ollama_llama3",    "type": "ollama",     "model": "llama3"},
 
-         {
-             "name": "multi_agent_groq_openrouter",
-             "type": "multi_agent",
-         }
+        #  {
+        #      "name": "multi_agent_groq_openrouter",
+        #      "type": "multi_agent",
+        #  }
     ]
 
     dataset = load_dataset(config)
     dataset = validate_dataset(dataset)
+
+    # ── Phase 7: initialise tracker before the model loop ────────────────── #
+    tracker = ExperimentTracker(models, config)
+    # ───────────────────────────────────────────────────────────────────────  #
 
     # Collect ALL results across every model for the combined Excel report
     all_results = []
@@ -126,53 +130,45 @@ def main():
         results = []
 
         for test in dataset:
-            # ── CHANGED: use graph pipeline instead of runner.run() ──────────
+            # ── use graph pipeline ────────────────────────────────────────────
             response = run_with_graph(
                 runner=runner,
                 query=test["query"],
                 model_name=model_cfg["name"],
             )
-            # ── everything below is UNCHANGED ────────────────────────────────
 
             sql_eval   = evaluate_sql(predicted_sql=response.get("sql"), expected_sql=test.get("expected_sql"))
             agent_eval = evaluate_agent(response, test)
             perf_eval  = evaluate_performance(response)
 
-            # ── Phase 4: pass steps for trajectory metrics ───────────────── #
+            # Phase 4: pass steps for trajectory metrics
             final_eval = combine_scores(sql_eval, agent_eval, perf_eval, steps=response.get("steps", []))
-            # ─────────────────────────────────────────────────────────────── #
 
             result = {
-                "model":        model_cfg["name"],
-                "query":        test["query"],
-                "expected_sql": test.get("expected_sql"),
-                "predicted_sql": response.get("sql"),
-                "sql_eval":     sql_eval,
-                "agent_eval":   agent_eval,
+                "model":            model_cfg["name"],
+                "query":            test["query"],
+                "expected_sql":     test.get("expected_sql"),
+                "predicted_sql":    response.get("sql"),
+                "sql_eval":         sql_eval,
+                "agent_eval":       agent_eval,
                 "performance_eval": perf_eval,
-                "final":        final_eval,
-                # NEW: preserved from graph state — safe to add since
-                # generate_report / generate_excel ignore unknown keys.
-                "steps":        response.get("steps", []),
+                "final":            final_eval,
+                "steps":            response.get("steps", []),
             }
 
             results.append(result)
 
             print("\n---")
-            print("Model:", model_cfg["name"])
-            print("Query:", test["query"])
-            print("FINAL SCORE:", final_eval["final_score"])
-            # ── Phase 4: trajectory score printed alongside final score ───── #
+            print("Model:",            model_cfg["name"])
+            print("Query:",            test["query"])
+            print("FINAL SCORE:",      final_eval["final_score"])
             print("TRAJECTORY SCORE:", final_eval["trajectory_eval"]["trajectory_score"])
-            # ─────────────────────────────────────────────────────────────── #
 
         # Save per-model JSON report
-        # Phase 5: pass runner so each result gets an "insight" field
         output_path = f"evals/reports/report_{model_cfg['name']}.json"
         generate_report(results, output_path, llm_runner=runner)
 
         # Per-model summary in terminal
-        # Phase 5: pass runner for batch-level LLM insight at end of summary
         summary = generate_summary(results, llm_runner=runner)
         print(f"\n=== SUMMARY ({model_cfg['name']}) ===")
         print(summary)
@@ -182,12 +178,20 @@ def main():
 
     # ─────────────────────────────────────────────────────────────
     # Auto-generate Excel report after ALL runners finish
-    # Contains: Raw Data sheet, Summary sheet, Multi-Agent Detail sheet
     # ─────────────────────────────────────────────────────────────
     generate_excel(
         results=all_results,
         output_path="evals/reports/benchmark.xlsx"
     )
+
+    # ── Phase 7: persist experiment artefacts ─────────────────────────────── #
+    tracker.save_config(config)
+    tracker.save_results(all_results)
+    tracker.save_traces(all_results)
+    # ───────────────────────────────────────────────────────────────────────── #
+
+    print(f"\n✅ Experiment ID: {tracker.experiment_id}")
+    print(f"   Artefacts → evals/experiments/exp_{tracker.experiment_id}_*.json")
 
 
 if __name__ == "__main__":
