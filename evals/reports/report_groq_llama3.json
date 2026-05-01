@@ -27,7 +27,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -42,7 +49,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.2451000404544175e-05
+                "latency": 2.3108001187210903e-05
             },
             {
                 "agent_name": "generator",
@@ -51,7 +58,7 @@
                     "sql": "SELECT COUNT(*) FROM singer"
                 },
                 "error": null,
-                "latency": 0.398894688999917
+                "latency": 0.18697746499856294
             },
             {
                 "agent_name": "executor",
@@ -62,7 +69,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0014777549999962503
+                "latency": 0.0014365890001499793
             }
         ]
     },
@@ -94,7 +101,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -107,7 +121,7 @@
                     "columns": []
                 },
                 "error": null,
-                "latency": 2.3818000045139343e-05
+                "latency": 2.509099977032747e-05
             },
             {
                 "agent_name": "generator",
@@ -116,7 +130,7 @@
                     "sql": "SELECT COUNT(*) FROM singer"
                 },
                 "error": null,
-                "latency": 0.19163113500007967
+                "latency": 0.3083221119995869
             },
             {
                 "agent_name": "executor",
@@ -127,7 +141,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0009925230001499585
+                "latency": 0.0010910979999607662
             }
         ]
     },
@@ -159,7 +173,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -176,7 +197,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.1036999896750785e-05
+                "latency": 2.1182000637054443e-05
             },
             {
                 "agent_name": "generator",
@@ -185,7 +206,7 @@
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC"
                 },
                 "error": null,
-                "latency": 0.3780769759996474
+                "latency": 0.3876283270001295
             },
             {
                 "agent_name": "executor",
@@ -205,7 +226,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.001044448999891756
+                "latency": 0.0012712879997707205
             }
         ]
     },
@@ -237,7 +258,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -253,7 +281,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.2754999918106478e-05
+                "latency": 2.0695999410236254e-05
             },
             {
                 "agent_name": "generator",
@@ -262,7 +290,7 @@
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC"
                 },
                 "error": null,
-                "latency": 0.38395966200005205
+                "latency": 0.2041161449997162
             },
             {
                 "agent_name": "executor",
@@ -282,7 +310,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010462290001669317
+                "latency": 0.0010147949997190153
             }
         ]
     },
@@ -314,7 +342,14 @@
             "sql_score": 0,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.315
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -329,7 +364,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.9784999949479243e-05
+                "latency": 1.828700078476686e-05
             },
             {
                 "agent_name": "generator",
@@ -338,7 +373,7 @@
                     "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'"
                 },
                 "error": null,
-                "latency": 0.22708806799982995
+                "latency": 0.3655185609986802
             },
             {
                 "agent_name": "executor",
@@ -351,7 +386,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010825809999914782
+                "latency": 0.0010707670007832348
             }
         ]
     },
@@ -359,7 +394,7 @@
         "model": "groq_llama3",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average_id, MIN(id) AS min_id, MAX(id) AS max_id\nFROM singer\nWHERE country = 'France'",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -383,7 +418,14 @@
             "sql_score": 0,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.315
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -398,16 +440,16 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.682800029811915e-05
+                "latency": 1.9016999431187287e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id) AS average_id, MIN(id) AS min_id, MAX(id) AS max_id\nFROM singer\nWHERE country = 'France'"
+                    "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'"
                 },
                 "error": null,
-                "latency": 0.7459839970001667
+                "latency": 0.2845409750007093
             },
             {
                 "agent_name": "executor",
@@ -420,7 +462,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010091670001202147
+                "latency": 0.0011227960003452608
             }
         ]
     },
@@ -452,7 +494,14 @@
             "sql_score": 0,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.315
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 5,
+                "error_steps": 1,
+                "recovery_attempts": 1,
+                "recovery_success": 1,
+                "trajectory_score": 0.9
+            }
         },
         "steps": [
             {
@@ -467,7 +516,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.7952999769477174e-05
+                "latency": 1.7934999050339684e-05
             },
             {
                 "agent_name": "generator",
@@ -476,14 +525,14 @@
                     "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1"
                 },
                 "error": null,
-                "latency": 0.38473335199978465
+                "latency": 0.3019722349999938
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0010510219999559922
+                "latency": 0.0010005149997596163
             },
             {
                 "agent_name": "retry_generator",
@@ -493,7 +542,7 @@
                     "attempt": 1
                 },
                 "error": null,
-                "latency": 0.23558471499973166
+                "latency": 0.2902058969993959
             },
             {
                 "agent_name": "executor",
@@ -505,7 +554,7 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011274919997958932
+                "latency": 0.0011302459988655755
             }
         ]
     },
@@ -513,7 +562,7 @@
         "model": "groq_llama3",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
+        "predicted_sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -524,20 +573,27 @@
             "mode": "single_agent",
             "tool_accuracy": 1.0,
             "efficiency": 0.5,
-            "failure_rate": 1.0,
-            "score": 0.45
+            "failure_rate": 0.0,
+            "score": 0.85
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0,
-            "error": 1,
-            "score": 0
+            "latency_score": 0.0,
+            "error": 0,
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.45,
-            "performance_score": 0,
-            "final_score": 0.135
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 2,
+                "recovery_attempts": 2,
+                "recovery_success": 1,
+                "trajectory_score": 0.6
+            }
         },
         "steps": [
             {
@@ -552,57 +608,62 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.9810999876644928e-05
+                "latency": 1.7740998373483308e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```"
+                    "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1"
                 },
                 "error": null,
-                "latency": 0.2524348260003535
+                "latency": 0.3902360320007574
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "OperationalError: unrecognized token: \"```\"",
-                "latency": 0.0010280569999849831
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.001061213000866701
             },
             {
                 "agent_name": "retry_generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
+                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1\n```",
                     "attempt": 1
                 },
                 "error": null,
-                "latency": 0.560085220000019
+                "latency": 0.40576843000053486
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: unrecognized token: \"```\"",
-                "latency": 0.0011938190000364557
+                "latency": 0.0009928719991876278
             },
             {
                 "agent_name": "retry_generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
+                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
                     "attempt": 2
                 },
                 "error": null,
-                "latency": 0.5628091529997619
+                "latency": 0.1883925130005082
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: unrecognized token: \"```\"",
-                "latency": 0.0009987819998968916
+                "success": true,
+                "output": [
+                    [
+                        "C",
+                        "-4707"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0006481799991888693
             }
         ]
     },
@@ -610,11 +671,11 @@
         "model": "groq_llama3",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%'",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'",
         "sql_eval": {
             "execution_match": 1,
-            "exact_match": 1,
-            "partial_match": 1,
+            "exact_match": 0,
+            "partial_match": 0,
             "score": 1
         },
         "agent_eval": {
@@ -634,7 +695,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -649,23 +717,23 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.8729000203165924e-05
+                "latency": 1.879699993878603e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%'"
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'"
                 },
                 "error": null,
-                "latency": 0.3843180530002428
+                "latency": 0.2245190409994393
             },
             {
                 "agent_name": "executor",
                 "success": true,
                 "output": [],
                 "error": null,
-                "latency": 0.0010822199997164716
+                "latency": 0.0014921359997970285
             }
         ]
     },
@@ -673,11 +741,11 @@
         "model": "groq_llama3",
         "query": "What are  the different countries with singers born in 2001?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
-        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%'",
+        "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'",
         "sql_eval": {
             "execution_match": 1,
-            "exact_match": 1,
-            "partial_match": 1,
+            "exact_match": 0,
+            "partial_match": 0,
             "score": 1
         },
         "agent_eval": {
@@ -697,7 +765,14 @@
             "sql_score": 1,
             "agent_score": 0.85,
             "performance_score": 0.3,
-            "final_score": 0.815
+            "final_score": 0.815,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            }
         },
         "steps": [
             {
@@ -712,23 +787,23 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.79889998435101e-05
+                "latency": 1.7300000763498247e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday LIKE '2001%'"
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'"
                 },
                 "error": null,
-                "latency": 1.4270513389997177
+                "latency": 0.3612831800001004
             },
             {
                 "agent_name": "executor",
                 "success": true,
                 "output": [],
                 "error": null,
-                "latency": 0.0013144279996595287
+                "latency": 0.0012264540000614943
             }
         ]
     }

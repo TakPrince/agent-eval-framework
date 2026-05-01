@@ -40,8 +40,6 @@ def run_with_graph(runner, query: str, model_name: str) -> dict:
         )
 
         # LangGraph returns a dict, not the original dataclass
-        # result: dict = graph.invoke(initial_state)
-
         result = graph.invoke(initial_state)
 
         if hasattr(result, "to_response_dict"):
@@ -51,14 +49,15 @@ def run_with_graph(runner, query: str, model_name: str) -> dict:
                 "sql": result.get("sql"),
                 "execution_result": result.get("execution_result"),
                 "error": result.get("error"),
-                "steps": [vars(s) for s in result.get("steps", [])],
+                "steps": [vars(s) if not isinstance(s, dict) else s for s in result.get("steps", [])],
             }
         # Extract fields directly from the returned dict
         return {
             "sql":              result.get("sql"),
             "execution_result": result.get("execution_result"),
             "error":            result.get("error"),
-            "steps":            [vars(s) for s in result.get("steps", [])],
+            # ── safe: handles both StepRecord objects and plain dicts ────────
+            "steps":            [vars(s) if not isinstance(s, dict) else s for s in result.get("steps", [])],
         }
 
     except Exception as exc:
@@ -138,7 +137,10 @@ def main():
             sql_eval   = evaluate_sql(predicted_sql=response.get("sql"), expected_sql=test.get("expected_sql"))
             agent_eval = evaluate_agent(response, test)
             perf_eval  = evaluate_performance(response)
-            final_eval = combine_scores(sql_eval, agent_eval, perf_eval)
+
+            # ── Phase 4: pass steps for trajectory metrics ───────────────── #
+            final_eval = combine_scores(sql_eval, agent_eval, perf_eval, steps=response.get("steps", []))
+            # ─────────────────────────────────────────────────────────────── #
 
             result = {
                 "model":        model_cfg["name"],
@@ -160,6 +162,9 @@ def main():
             print("Model:", model_cfg["name"])
             print("Query:", test["query"])
             print("FINAL SCORE:", final_eval["final_score"])
+            # ── Phase 4: trajectory score printed alongside final score ───── #
+            print("TRAJECTORY SCORE:", final_eval["trajectory_eval"]["trajectory_score"])
+            # ─────────────────────────────────────────────────────────────── #
 
         # Save per-model JSON report
         output_path = f"evals/reports/report_{model_cfg['name']}.json"

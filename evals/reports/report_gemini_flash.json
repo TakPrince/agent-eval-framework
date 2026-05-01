@@ -12,41 +12,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.24461664600016775
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 1.2110001534892945e-06
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -61,41 +51,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.28755819100001645
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 1.3579999631474493e-06
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -110,41 +90,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.1905079380001098
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 8.219999472203199e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -159,41 +129,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.29343163199996525
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 1.1409999842726393e-06
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -208,41 +168,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.19033870500015837
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 1.1690001429087715e-06
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -257,41 +207,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.29525330000001304
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 6.779998784622876e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -306,41 +246,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.19203547000006438
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 6.269999630603706e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -355,41 +285,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.29278945700002623
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 7.000001005508238e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -404,41 +324,31 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.18826801699992757
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 7.26000052964082e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     },
     {
         "model": "gemini_flash",
@@ -453,40 +363,30 @@
         },
         "agent_eval": {
             "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "tool_accuracy": 0.0,
+            "efficiency": 0.0,
+            "failure_rate": 1.0,
+            "score": 0.0
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "latency_score": 0,
+            "error": 1,
+            "score": 0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": null
-                },
-                "error": null,
-                "latency": 0.29552647800005616
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: no SQL produced by generator",
-                "latency": 7.630001164216083e-07
+            "agent_score": 0.0,
+            "performance_score": 0,
+            "final_score": 0.0,
+            "trajectory_eval": {
+                "step_count": 0,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
             }
-        ]
+        },
+        "steps": []
     }
 ]
