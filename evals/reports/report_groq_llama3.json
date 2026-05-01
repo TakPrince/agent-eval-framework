@@ -34,7 +34,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -49,7 +51,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.239800051029306e-05
+                "latency": 2.1485000615939498e-05
             },
             {
                 "agent_name": "generator",
@@ -58,7 +60,7 @@
                     "sql": "SELECT COUNT(*) FROM singer"
                 },
                 "error": null,
-                "latency": 0.4842664240004524
+                "latency": 0.24225106300036714
             },
             {
                 "agent_name": "executor",
@@ -69,10 +71,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011429250007495284
+                "latency": 0.0013332569997146493
             }
         ],
-        "insight": "SELECT 'Succeeded' AS result, 'No struggle' AS struggle, 'Implement error logging' AS improvement"
+        "insight": "The result succeeded due to accurate SQL generation. No stage struggled as there were no errors. To improve, the agent's performance score of 0.3 could be increased by optimizing the query execution time."
     },
     {
         "model": "groq_llama3",
@@ -109,7 +111,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -122,7 +126,7 @@
                     "columns": []
                 },
                 "error": null,
-                "latency": 1.963199974852614e-05
+                "latency": 2.636700082803145e-05
             },
             {
                 "agent_name": "generator",
@@ -131,7 +135,7 @@
                     "sql": "SELECT COUNT(*) FROM singer"
                 },
                 "error": null,
-                "latency": 0.38721826700020756
+                "latency": 0.30948008999985177
             },
             {
                 "agent_name": "executor",
@@ -142,10 +146,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0010278400004608557
+                "latency": 0.0012937719984620344
             }
         ],
-        "insight": "SELECT 'Succeeded' AS result, 'No struggle' AS struggle, 'Implement error logging' AS improvement"
+        "insight": "The result succeeded due to accurate SQL generation. No stage struggled as there were no errors. One improvement could be optimizing the agent's performance to increase its score."
     },
     {
         "model": "groq_llama3",
@@ -182,7 +186,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -199,7 +205,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.1292000383255072e-05
+                "latency": 2.012499862757977e-05
             },
             {
                 "agent_name": "generator",
@@ -208,7 +214,7 @@
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC"
                 },
                 "error": null,
-                "latency": 0.38714775999869744
+                "latency": 0.22792652099997213
             },
             {
                 "agent_name": "executor",
@@ -228,10 +234,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0009938499988493277
+                "latency": 0.0011818290004157461
             }
         ],
-        "insight": "1. The result succeeded as Errors = 0.\n2. No stage struggled.\n3. Implement automated feedback for low-scoring components, like Performance."
+        "insight": "The result partially succeeded due to incorrect ordering, as ASC orders by earliest birthday, not oldest. No stage struggled as there were no errors. To improve, consider ordering by birthday in DESC to get the oldest singers first."
     },
     {
         "model": "groq_llama3",
@@ -268,7 +274,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -284,7 +292,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.2698000975651667e-05
+                "latency": 2.2496999008581042e-05
             },
             {
                 "agent_name": "generator",
@@ -293,7 +301,7 @@
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC"
                 },
                 "error": null,
-                "latency": 0.38394712599983905
+                "latency": 0.3239418029988883
             },
             {
                 "agent_name": "executor",
@@ -313,10 +321,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0012739439989672974
+                "latency": 0.0014783239985263208
             }
         ],
-        "insight": "SELECT name, country FROM singer ORDER BY birthday ASC succeeded. \nNo stage struggled since Errors = 0. \nImprove system logging to track query generation time for optimization."
+        "insight": "The result failed due to incorrect sorting order. \nThe SQL stage struggled with the order by clause. \nOne improvement is to change the order by clause to DESC to correctly sort by age."
     },
     {
         "model": "groq_llama3",
@@ -353,7 +361,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.3,
+            "adjusted_score": 0.315
         },
         "steps": [
             {
@@ -368,7 +378,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.333799966436345e-05
+                "latency": 1.9085000531049445e-05
             },
             {
                 "agent_name": "generator",
@@ -377,7 +387,7 @@
                     "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'"
                 },
                 "error": null,
-                "latency": 0.2787230570011161
+                "latency": 0.3888092870001856
             },
             {
                 "agent_name": "executor",
@@ -390,10 +400,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011062600005971035
+                "latency": 0.0011674919987854082
             }
         ],
-        "insight": "1. The result succeeded as Errors = 0.\n2. No stage struggled.\n3. Implement automated SQL validation to reduce potential future errors."
+        "insight": "The result failed due to a scoring issue, not a logical error. No stage struggled as there were no errors. Improvement: refine the NL2SQL model to better match the expected SQL syntax for higher SQL score."
     },
     {
         "model": "groq_llama3",
@@ -430,7 +440,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.3,
+            "adjusted_score": 0.315
         },
         "steps": [
             {
@@ -445,7 +457,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.6754000171204098e-05
+                "latency": 1.736699960019905e-05
             },
             {
                 "agent_name": "generator",
@@ -454,7 +466,7 @@
                     "sql": "SELECT AVG(id) AS average_id, MIN(id) AS min_id, MAX(id) AS max_id\nFROM singer\nWHERE country = 'France'"
                 },
                 "error": null,
-                "latency": 0.288086922999355
+                "latency": 0.3853306680011883
             },
             {
                 "agent_name": "executor",
@@ -467,16 +479,128 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011042749993066536
+                "latency": 0.001122714000302949
             }
         ],
-        "insight": "SELECT 'Succeeded' AS result, 'No struggle' AS struggle, 'Implement error logging' AS improvement"
+        "insight": "The result failed due to a scoring issue, not a technical one. The SQL score is 0, indicating a problem with the generated query. To improve, consider adding more specific conditions or handling potential null values."
     },
     {
         "model": "groq_llama3",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1\n```",
+        "predicted_sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "single_agent",
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.85
+        },
+        "performance_eval": {
+            "latency": null,
+            "latency_score": 0.0,
+            "error": 0,
+            "score": 0.3
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 2,
+                "recovery_attempts": 2,
+                "recovery_success": 1,
+                "trajectory_score": 0.6
+            },
+            "ves_score": 0.18,
+            "adjusted_score": 0.155
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 1.7876000129035674e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1"
+                },
+                "error": null,
+                "latency": 0.3851693039996462
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.001059707999957027
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1\n```",
+                    "attempt": 1
+                },
+                "error": null,
+                "latency": 0.40972038800100563
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: unrecognized token: \"```\"",
+                "latency": 0.001041626001097029
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+                    "attempt": 2
+                },
+                "error": null,
+                "latency": 0.18987235199892893
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "C",
+                        "-4707"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.001066548999006045
+            }
+        ],
+        "insight": "The result failed due to incorrect SQL syntax. The stage that struggled was SQL generation, with 2 errors. One improvement is to correctly implement the SQL query to extract the release year, which is not present in the given schema, suggesting a misunderstanding of the task."
+    },
+    {
+        "model": "groq_llama3",
+        "query": "What are the names and release years for all the songs of the youngest singer?",
+        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+        "predicted_sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -507,7 +631,9 @@
                 "recovery_attempts": 2,
                 "recovery_success": 0,
                 "trajectory_score": 0.2
-            }
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
         },
         "steps": [
             {
@@ -522,135 +648,60 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.6849000530783087e-05
+                "latency": 2.1437999748741277e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1"
+                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```"
                 },
                 "error": null,
-                "latency": 0.28490612099994905
+                "latency": 0.3498025389999384
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0006902109998918604
+                "error": "OperationalError: unrecognized token: \"```\"",
+                "latency": 0.0010563409996393602
             },
             {
                 "agent_name": "retry_generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1\n```",
+                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
                     "attempt": 1
                 },
                 "error": null,
-                "latency": 0.4074260659999709
+                "latency": 0.3568032540006243
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: unrecognized token: \"```\"",
-                "latency": 0.0010192999998253072
+                "latency": 0.0010294559997419128
             },
             {
                 "agent_name": "retry_generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, STRFTIME('%Y', birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1\n```",
+                    "sql": "SELECT name \nFROM singer \nWHERE birthday = (SELECT MAX(birthday) FROM singer)\n```",
                     "attempt": 2
                 },
                 "error": null,
-                "latency": 0.30611612999928184
+                "latency": 0.30537046199970064
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: unrecognized token: \"```\"",
-                "latency": 0.0009472570000070846
+                "latency": 0.0009648680006648647
             }
         ],
-        "insight": "1. The result failed due to SQL score being 0.\n2. The system struggled as errors = 3.\n3. Implement error tracking to identify and fix recurring issues, such as incorrect SQL queries."
-    },
-    {
-        "model": "groq_llama3",
-        "query": "What are the names and release years for all the songs of the youngest singer?",
-        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT name \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
-        "sql_eval": {
-            "execution_match": 0,
-            "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
-        },
-        "agent_eval": {
-            "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
-        },
-        "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
-        },
-        "final": {
-            "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315,
-            "trajectory_eval": {
-                "step_count": 3,
-                "error_steps": 0,
-                "recovery_attempts": 0,
-                "recovery_success": 0,
-                "trajectory_score": 1.0
-            }
-        },
-        "steps": [
-            {
-                "agent_name": "extractor",
-                "success": true,
-                "output": {
-                    "tables": [
-                        "singer"
-                    ],
-                    "columns": [
-                        "name"
-                    ]
-                },
-                "error": null,
-                "latency": 1.765200067893602e-05
-            },
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": "SELECT name \nFROM singer \nORDER BY birthday DESC \nLIMIT 1"
-                },
-                "error": null,
-                "latency": 0.39750661499965645
-            },
-            {
-                "agent_name": "executor",
-                "success": true,
-                "output": [
-                    [
-                        "C"
-                    ]
-                ],
-                "error": null,
-                "latency": 0.0010973990010825219
-            }
-        ],
-        "insight": "SELECT name, birthday FROM singer ORDER BY birthday DESC LIMIT 1\nThe result failed as it didn't meet the query requirements.\nNo stage struggled since Errors = 0.\nImprove the system by adding query validation checks."
+        "insight": "The result failed because the SQL query only retrieves the singer's name, not the song information. The agent struggled in generating the correct SQL query. One improvement is to include the missing table for songs in the schema to generate accurate SQL queries."
     },
     {
         "model": "groq_llama3",
@@ -687,7 +738,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -702,7 +755,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.271999983349815e-05
+                "latency": 1.645399970584549e-05
             },
             {
                 "agent_name": "generator",
@@ -711,17 +764,17 @@
                     "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'"
                 },
                 "error": null,
-                "latency": 0.37344283099992026
+                "latency": 0.39021003199923143
             },
             {
                 "agent_name": "executor",
                 "success": true,
                 "output": [],
                 "error": null,
-                "latency": 0.0005536059998121345
+                "latency": 0.0010495770002307836
             }
         ],
-        "insight": "1. The result succeeded as Errors = 0.\n2. No stage struggled.\n3. Implement automated SQL validation to reduce potential future errors."
+        "insight": "The result succeeded due to accurate SQL generation. No stage struggled as there were no errors. One improvement could be optimizing the SQL query for better performance, as indicated by the low performance score."
     },
     {
         "model": "groq_llama3",
@@ -758,7 +811,9 @@
                 "recovery_attempts": 0,
                 "recovery_success": 0,
                 "trajectory_score": 1.0
-            }
+            },
+            "ves_score": 0.8,
+            "adjusted_score": 0.815
         },
         "steps": [
             {
@@ -773,7 +828,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.614500069990754e-05
+                "latency": 1.6631000107736327e-05
             },
             {
                 "agent_name": "generator",
@@ -782,16 +837,16 @@
                     "sql": "SELECT DISTINCT country \nFROM singer \nWHERE birthday BETWEEN '2001-01-01' AND '2001-12-31'"
                 },
                 "error": null,
-                "latency": 0.2869266500001686
+                "latency": 0.38902625900118437
             },
             {
                 "agent_name": "executor",
                 "success": true,
                 "output": [],
                 "error": null,
-                "latency": 0.001110381999751553
+                "latency": 0.0011672930013446603
             }
         ],
-        "insight": "1. The result succeeded as Errors = 0.\n2. No stage struggled.\n3. Implement automated SQL validation to reduce potential future errors."
+        "insight": "The result succeeded due to accurate SQL generation. No stage struggled as there were no errors. One improvement could be optimizing the SQL query for better performance, as indicated by the low performance score."
     }
 ]

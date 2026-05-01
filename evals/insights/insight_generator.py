@@ -23,7 +23,12 @@ from __future__ import annotations
 _SINGLE_RESULT_PROMPT = """\
 You are an AI system evaluator.
 
-Analyze the NL2SQL result strictly based on the data below.
+IMPORTANT:
+- DO NOT generate SQL
+- DO NOT use SQL syntax
+- Respond only in plain English
+
+Analyze the NL2SQL result:
 
 Query: {query}
 SQL: {predicted_sql}
@@ -38,16 +43,12 @@ Trajectory:
 - Errors: {error_steps}
 - Retries: {recovery_attempts}
 
-STRICT RULES:
-- If error_steps = 0 → system did NOT struggle
-- If recovery_attempts = 0 → no retry occurred
-- DO NOT assume failures if not present
-- ONLY use given numbers
+Explain:
+1. Why the result succeeded or failed
+2. Whether any stage struggled (only if errors > 0)
+3. One improvement
 
-Tasks:
-1. Explain why the result succeeded or failed
-2. Identify if any stage struggled (ONLY if errors > 0)
-3. Suggest one concrete system-level improvement (not about increasing scores) Keep answer concise (3-5 lines).\
+Keep answer concise (3-5 lines).\
 """
 
 # ─────────────────────────────────────────────────────────────────────────────
