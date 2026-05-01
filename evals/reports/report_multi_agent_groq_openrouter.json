@@ -51,7 +51,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.0138000763836317e-05
+                "latency": 1.0126001143362373e-05
             },
             {
                 "agent_name": "generator",
@@ -60,7 +60,7 @@
                     "sql": "SELECT COUNT(id) FROM singer;"
                 },
                 "error": null,
-                "latency": 1.3969907509999757
+                "latency": 0.9225086089973047
             },
             {
                 "agent_name": "executor",
@@ -71,10 +71,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011077790004492272
+                "latency": 0.0005089189980935771
             }
         ],
-        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: How many singers do we have?\\nSQL: SELECT COUNT(id) FROM singer;\\n\\nScores:\\n- SQL: 1\\n- Agent: 0.85\\n- Performance: 0.3\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 0\\n- Retries: 0\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).', 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.13}], 'total_latency': 0.13, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
+        "insight": "1. The result succeeded because the SQL query correctly counts the number of rows in the 'singer' table, which corresponds to the number of singers.\n2. There were no struggles identified as there were no errors or retries.\n3. A system-level improvement could be implementing a caching mechanism for frequently used queries, such as counting the number of rows in a table, to improve performance."
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -126,7 +126,7 @@
                     "columns": []
                 },
                 "error": null,
-                "latency": 1.66689987963764e-05
+                "latency": 1.3370001397561282e-05
             },
             {
                 "agent_name": "generator",
@@ -135,7 +135,7 @@
                     "sql": "SELECT COUNT(id) FROM singer;"
                 },
                 "error": null,
-                "latency": 1.4126946090000274
+                "latency": 1.315280670998618
             },
             {
                 "agent_name": "executor",
@@ -146,10 +146,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.001072954999472131
+                "latency": 0.0011032930015062448
             }
         ],
-        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: What is the total number of singers?\\nSQL: SELECT COUNT(id) FROM singer;\\n\\nScores:\\n- SQL: 1\\n- Agent: 0.85\\n- Performance: 0.3\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 0\\n- Retries: 0\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).', 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.11}], 'total_latency': 0.11, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
+        "insight": "1. The query succeeded because it correctly counts the number of rows in the 'singer' table, which corresponds to the total number of singers.\n2. Since there were no errors or retries, no stage struggled during the process.\n3. A system-level improvement could be implementing a more efficient query plan analysis to further optimize the SQL generation process."
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -205,7 +205,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.705899921944365e-05
+                "latency": 1.296600021305494e-05
             },
             {
                 "agent_name": "generator",
@@ -214,7 +214,7 @@
                     "sql": "SELECT name, country \nFROM singer \nORDER BY birthday DESC;"
                 },
                 "error": null,
-                "latency": 1.309828921001099
+                "latency": 1.5125827839983685
             },
             {
                 "agent_name": "executor",
@@ -234,10 +234,10 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0011306520009384258
+                "latency": 0.0005049370010965504
             }
         ],
-        "insight": "selecting the required columns and ordering by birthday in descending order.\n2. No specific stage struggled as there were no errors or retries.\n3. One improvement could be to consider adding a filter or aggregation if it was the user's intention, even if it was not specified in the plan. However, since the plan does not include any filter or aggregation, the current query is accurate."
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -292,7 +292,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.0340999981272034e-05
+                "latency": 9.334999049315229e-06
             },
             {
                 "agent_name": "generator",
@@ -301,7 +301,7 @@
                     "sql": "SELECT name, country\nFROM singer\nORDER BY birthday ASC;"
                 },
                 "error": null,
-                "latency": 1.820449685001222
+                "latency": 1.013558049002313
             },
             {
                 "agent_name": "executor",
@@ -321,16 +321,16 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.001037783000356285
+                "latency": 0.0014056810032343492
             }
         ],
-        "insight": "1. The result succeeded in providing the names and countries of the singers, but it failed to order the results by the descending age (birthday).\n2. There were no struggles during the generation process.\n3. An improvement would be to order the results by the birthday in descending order, such as \"ORDER BY birthday DESC\"."
+        "insight": "1. The result succeeded because the SQL query returns the name and country columns from the singer table, ordered by the birthday column in ascending order, which is equivalent to sorting by age in descending order since birthday is unique.\n2. There were no struggles as there were no errors.\n3. A system-level improvement could be to optimize the ordering step to sort by descending order directly, reducing the need for an additional step to reverse the order."
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';",
+        "predicted_sql": "SELECT AVG(id) AS average_id, MIN(id) AS min_id, MAX(id) AS max_id\nFROM singer\nWHERE country IN ('France', 'France');",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -341,29 +341,29 @@
             "mode": "single_agent",
             "tool_accuracy": 1.0,
             "efficiency": 0.5,
-            "failure_rate": 1.0,
-            "score": 0.45
+            "failure_rate": 0.0,
+            "score": 0.85
         },
         "performance_eval": {
             "latency": null,
-            "latency_score": 0,
-            "error": 1,
-            "score": 0
+            "latency_score": 0.0,
+            "error": 0,
+            "score": 0.3
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.45,
-            "performance_score": 0,
-            "final_score": 0.135,
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315,
             "trajectory_eval": {
-                "step_count": 7,
-                "error_steps": 3,
-                "recovery_attempts": 2,
-                "recovery_success": 0,
-                "trajectory_score": 0.2
+                "step_count": 5,
+                "error_steps": 1,
+                "recovery_attempts": 1,
+                "recovery_success": 1,
+                "trajectory_score": 0.9
             },
-            "ves_score": 0.06,
-            "adjusted_score": 0.0
+            "ves_score": 0.27,
+            "adjusted_score": 0.235
         },
         "steps": [
             {
@@ -378,66 +378,55 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.8872000509873033e-05
+                "latency": 9.00599843589589e-06
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';"
+                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country IN ('France', 'French');"
                 },
                 "error": null,
-                "latency": 1.822782213001119
+                "latency": 1.429202997001994
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: unrecognized token: \"\\\"",
-                "latency": 0.0010818470000231173
+                "latency": 0.0004928269991069101
             },
             {
                 "agent_name": "retry_generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French' ;",
+                    "sql": "SELECT AVG(id) AS average_id, MIN(id) AS min_id, MAX(id) AS max_id\nFROM singer\nWHERE country IN ('France', 'France');",
                     "attempt": 1
                 },
                 "error": null,
-                "latency": 1.1720173049998266
+                "latency": 1.4256149009997898
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: unrecognized token: \"\\\"",
-                "latency": 0.001013204999253503
-            },
-            {
-                "agent_name": "retry_generator",
                 "success": true,
-                "output": {
-                    "sql": "SELECT AVG(id) AS average\\_id, MIN(id) AS min\\_id, MAX(id) AS max\\_id\nFROM singer\nWHERE country = 'France' OR country = 'French';",
-                    "attempt": 2
-                },
+                "output": [
+                    [
+                        null,
+                        null,
+                        null
+                    ]
+                ],
                 "error": null,
-                "latency": 1.3869163540002774
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: unrecognized token: \"\\\"",
-                "latency": 0.0010222450000583194
+                "latency": 0.001094444000045769
             }
         ],
-        "insight": "{'query': \"You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: What is the average, minimum, and maximum id of all French singers?\\nSQL: SELECT AVG(id) AS average\\\\_id, MIN(id) AS min\\\\_id, MAX(id) AS max\\\\_id\\nFROM singer\\nWHERE country = 'France' OR country = 'French';\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.45\\n- Performance: 0\\n\\nTrajectory:\\n- Steps: 7\\n- Errors: 3\\n- Retries: 2\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).\", 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.11}], 'total_latency': 0.11, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
+        "insight": "1. The result succeeded in providing the correct answer to the user's query. It calculated the average, minimum, and maximum id of French singers accurately.\n2. There were no struggles identified during the query planning or execution stages.\n3. System-level improvement: To further enhance the system's performance, consider implementing caching for frequently used queries or filters, such as the 'country' filter in this case. This would help reduce the response time for similar future queries."
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS min_id,\n    MAX(id) AS max_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';",
+        "predicted_sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -485,16 +474,16 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.731100019242149e-05
+                "latency": 1.1602001904975623e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS min_id,\n    MAX(id) AS max_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';"
+                    "sql": "SELECT\n    AVG(id) AS average_id,\n    MIN(id) AS minimum_id,\n    MAX(id) AS maximum_id\nFROM\n    singer\nWHERE\n    country = 'France' OR country = 'French';"
                 },
                 "error": null,
-                "latency": 1.8210819830001128
+                "latency": 1.7709454040013952
             },
             {
                 "agent_name": "executor",
@@ -507,16 +496,16 @@
                     ]
                 ],
                 "error": null,
-                "latency": 0.0005474560002767248
+                "latency": 0.0009661499971116427
             }
         ],
-        "insight": "1. The result succeeded because the generated SQL query correctly follows the provided plan, filtering for singers from 'France' or 'French' and calculating the average, minimum, and maximum id.\n2. No stages struggled as there were no errors or retries.\n3. An improvement could be to simplify the WHERE clause using the IN operator: `WHERE country IN ('France', 'French')`."
+        "insight": "1. The query succeeded because it correctly interprets the user's request and generates the appropriate SQL query using the 'singer' table, 'id' column, and 'France' or 'French' filter.\n2. Since errors = 0, no stage struggled.\n3. A system-level improvement could be to optimize the SQL query generation process for better performance, such as reducing the number of steps or improving the speed of SQL query generation."
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": null,
+        "predicted_sql": "SELECT name, birthday\nFROM singer\nORDER BY birthday ASC\nLIMIT 1;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -543,13 +532,13 @@
             "final_score": 0.315,
             "trajectory_eval": {
                 "step_count": 3,
-                "error_steps": 1,
+                "error_steps": 0,
                 "recovery_attempts": 0,
                 "recovery_success": 0,
-                "trajectory_score": 0.8
+                "trajectory_score": 1.0
             },
-            "ves_score": 0.24,
-            "adjusted_score": 0.265
+            "ves_score": 0.3,
+            "adjusted_score": 0.315
         },
         "steps": [
             {
@@ -564,32 +553,115 @@
                     ]
                 },
                 "error": null,
-                "latency": 1.8212998838862404e-05
+                "latency": 1.0946998372673988e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": null
+                    "sql": "SELECT name, birthday\nFROM singer\nORDER BY birthday ASC\nLIMIT 1;"
                 },
                 "error": null,
-                "latency": 0.12094021600023552
+                "latency": 1.7786178099995595
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "Skipped: generator produced no SQL",
-                "latency": 1.6789999790489674e-06
+                "success": true,
+                "output": [
+                    [
+                        "B",
+                        "1985"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0010490140011825133
             }
         ],
-        "insight": "The query failed because the user asked for the release year of a song, but the schema only includes information about singers, not their songs. The system struggled to find the required information in the given schema. A possible improvement could be to ask the user to provide the name of the song or to include song information in the schema.\nSQL:\nNone"
+        "insight": "1. The result succeeded because the query correctly retrieves the name and birthday of the youngest singer without any errors.\n2. No stage struggled since there were no errors (error_steps = 0).\n3. System-level improvement: Optimize the query to directly retrieve the required 'name' and convert the birthday to the release year of the song, if possible, to avoid external processing. However, this improvement suggestion is based on the assumption that the schema contains a column for the song's release year. If not, the query is already optimized."
     },
     {
         "model": "multi_agent_groq_openrouter",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT id AS singer_id, birthday\n    FROM singer\n    WHERE birthday = (SELECT MIN(birthday) FROM singer)\n)\nSELECT name, NULL AS release_year\nFROM singer\nWHERE id IN (SELECT singer_id FROM youngest_singer);",
+        "predicted_sql": "SELECT name, birthday\nFROM singer\nWHERE birthday = (SELECT MIN(birthday) FROM singer);",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "single_agent",
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5,
+            "failure_rate": 0.0,
+            "score": 0.85
+        },
+        "performance_eval": {
+            "latency": null,
+            "latency_score": 0.0,
+            "error": 0,
+            "score": 0.3
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.85,
+            "performance_score": 0.3,
+            "final_score": 0.315,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.3,
+            "adjusted_score": 0.315
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 1.1906002328032628e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, birthday\nFROM singer\nWHERE birthday = (SELECT MIN(birthday) FROM singer);"
+                },
+                "error": null,
+                "latency": 1.9897057889975258
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "B",
+                        "1985"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0006268239994824398
+            }
+        ],
+        "insight": "1. The result succeeded in providing the names and minimum birthdays of the youngest singer, but it did not provide the release years for all the songs as requested in the query. This is because the schema does not include a table for songs or any column for release years.\n2. The system did not struggle since there were no errors or retries.\n3. A concrete system-level improvement could be to expand the schema to include a table for songs with columns for the song name, release year, and the corresponding singer id. This would enable the system to provide the correct response to the query."
+    },
+    {
+        "model": "multi_agent_groq_openrouter",
+        "query": "What are all distinct countries where singers born in 2001 are from?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
+        "predicted_sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -633,137 +705,64 @@
                         "singer"
                     ],
                     "columns": [
-                        "name"
-                    ]
-                },
-                "error": null,
-                "latency": 1.796099968487397e-05
-            },
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": "SELECT id AS singer_id, birthday\n    FROM singer\n    WHERE birthday = (SELECT MIN(birthday) FROM singer)\n)\nSELECT name, NULL AS release_year\nFROM singer\nWHERE id IN (SELECT singer_id FROM youngest_singer);"
-                },
-                "error": null,
-                "latency": 1.675299148000704
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: near \")\": syntax error",
-                "latency": 0.0012102150012651691
-            },
-            {
-                "agent_name": "retry_generator",
-                "success": true,
-                "output": {
-                    "sql": "SELECT id AS singer_id, birthday\n    FROM singer\n    WHERE birthday = (SELECT MIN(birthday) FROM singer)\n)\nSELECT name, NULL AS release_year\nFROM singer\nWHERE id IN (SELECT singer_id FROM youngest_singer);",
-                    "attempt": 1
-                },
-                "error": null,
-                "latency": 0.10905980899951828
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: near \")\": syntax error",
-                "latency": 0.00047723300122015644
-            },
-            {
-                "agent_name": "retry_generator",
-                "success": true,
-                "output": {
-                    "sql": "SELECT id AS singer_id, birthday\n    FROM singer\n    WHERE birthday = (SELECT MIN(birthday) FROM singer)\n)\nSELECT name, NULL AS release_year\nFROM singer\nWHERE id IN (SELECT singer_id FROM youngest_singer);",
-                    "attempt": 2
-                },
-                "error": null,
-                "latency": 0.13077255399912247
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "OperationalError: near \")\": syntax error",
-                "latency": 0.0005476949991134461
-            }
-        ],
-        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: What are the names and release years for all the songs of the youngest singer?\\nSQL: SELECT id AS singer_id, birthday\\n    FROM singer\\n    WHERE birthday = (SELECT MIN(birthday) FROM singer)\\n)\\nSELECT name, NULL AS release_year\\nFROM singer\\nWHERE id IN (SELECT singer_id FROM youngest_singer);\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.45\\n- Performance: 0\\n\\nTrajectory:\\n- Steps: 7\\n- Errors: 3\\n- Retries: 2\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).', 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.1}], 'total_latency': 0.1, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
-    },
-    {
-        "model": "multi_agent_groq_openrouter",
-        "query": "What are all distinct countries where singers born in 2001 are from?",
-        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": null,
-        "sql_eval": {
-            "execution_match": 0,
-            "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
-        },
-        "agent_eval": {
-            "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
-        },
-        "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
-        },
-        "final": {
-            "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315,
-            "trajectory_eval": {
-                "step_count": 3,
-                "error_steps": 1,
-                "recovery_attempts": 0,
-                "recovery_success": 0,
-                "trajectory_score": 0.8
-            },
-            "ves_score": 0.24,
-            "adjusted_score": 0.265
-        },
-        "steps": [
-            {
-                "agent_name": "extractor",
-                "success": true,
-                "output": {
-                    "tables": [
-                        "singer"
-                    ],
-                    "columns": [
                         "id"
                     ]
                 },
                 "error": null,
-                "latency": 1.7255999409826472e-05
+                "latency": 1.0066996765090153e-05
             },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": null
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
                 },
                 "error": null,
-                "latency": 0.1348487639988889
+                "latency": 0.9753389359975699
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "Skipped: generator produced no SQL",
-                "latency": 1.6730009519960731e-06
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0010531649968470447
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "attempt": 1
+                },
+                "error": null,
+                "latency": 1.4065349550000974
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.00047689099665149115
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "attempt": 2
+                },
+                "error": null,
+                "latency": 1.2278677750000497
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.000973532998614246
             }
         ],
-        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: What are all distinct countries where singers born in 2001 are from?\\nSQL: None\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.85\\n- Performance: 0.3\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 1\\n- Retries: 0\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).', 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.13}], 'total_latency': 0.13, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
     },
     {
         "model": "multi_agent_groq_openrouter",
@@ -817,7 +816,7 @@
                     ]
                 },
                 "error": null,
-                "latency": 2.270400000270456e-05
+                "latency": 9.000999853014946e-06
             },
             {
                 "agent_name": "generator",
@@ -826,14 +825,14 @@
                     "sql": "SELECT DISTINCT country\nFROM singer\nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
                 },
                 "error": null,
-                "latency": 1.7161950820009224
+                "latency": 1.2185136770021927
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0012218119991302956
+                "latency": 0.0011745980009436607
             },
             {
                 "agent_name": "retry_generator",
@@ -843,14 +842,14 @@
                     "attempt": 1
                 },
                 "error": null,
-                "latency": 0.09753628500038758
+                "latency": 1.3386908840002434
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0005082130010123365
+                "latency": 0.0009398729998792987
             },
             {
                 "agent_name": "retry_generator",
@@ -860,16 +859,16 @@
                     "attempt": 2
                 },
                 "error": null,
-                "latency": 0.12217023400080507
+                "latency": 1.833067794003
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
                 "error": "OperationalError: near \"FROM\": syntax error",
-                "latency": 0.0007049959986034082
+                "latency": 0.000963348000368569
             }
         ],
-        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- DO NOT generate SQL\\n- DO NOT use SQL syntax\\n- Respond only in plain English\\n\\nAnalyze the NL2SQL result:\\n\\nQuery: What are  the different countries with singers born in 2001?\\nSQL: SELECT DISTINCT country\\nFROM singer\\nWHERE EXTRACT(YEAR FROM birthday) = 2001;\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.45\\n- Performance: 0\\n\\nTrajectory:\\n- Steps: 7\\n- Errors: 3\\n- Retries: 2\\n\\nExplain:\\n1. Why the result succeeded or failed\\n2. Whether any stage struggled (only if errors > 0)\\n3. One improvement\\n\\nKeep answer concise (3-5 lines).', 'sql': None, 'answer': None, 'steps': [{'agent': 'planner', 'tool': 'groq', 'status': 'failed', 'latency': 0.11}], 'total_latency': 0.11, 'error': 'planner failed: 429 Client Error: Too Many Requests for url: https://api.groq.com/openai/v1/chat/completions'}"
+        "insight": "1. The result succeeded because the generated SQL retrieves the distinct countries of singers born in 2001.\n2. There is no evidence of struggling since errors equal 0.\n3. A system-level improvement could be adding more test cases and validating the generated SQL against a wider range of queries to increase confidence in the system's performance."
     }
 ]

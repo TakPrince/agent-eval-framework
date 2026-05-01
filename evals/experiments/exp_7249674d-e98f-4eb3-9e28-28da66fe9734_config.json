@@ -1,0 +1,27 @@
+{
+    "experiment_id": "7249674d-e98f-4eb3-9e28-28da66fe9734",
+    "timestamp": "2026-05-01T14:29:39.350329+00:00",
+    "models": [
+        "groq_llama3",
+        "openrouter_mixtral",
+        "multi_agent_groq_openrouter"
+    ],
+    "dataset": "unknown",
+    "config": {
+        "agent": {
+            "base_url": "http://localhost:8000"
+        },
+        "evaluation": {
+            "metrics": {
+                "sql": true,
+                "agent": true,
+                "performance": true
+            }
+        },
+        "dataset": {
+            "type": "spider",
+            "path": "data/spider_data/train_spider.json"
+        },
+        "debug_phase3": false
+    }
+}

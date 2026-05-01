@@ -86,13 +86,13 @@ def main():
         # {"name": "gemini_lite",  "type": "gemini", "model": "gemini-2.5-flash-lite"},
 
           {"name": "groq_llama3",        "type": "groq",       "model": "llama-3.3-70b-versatile"},
-        #  {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
-        #  {"name": "ollama_llama3",    "type": "ollama",     "model": "llama3"},
+          {"name": "openrouter_mixtral", "type": "openrouter", "model": "openrouter/auto"},
+        #   {"name": "ollama_llama3",    "type": "ollama",     "model": "llama3"},
 
-        #  {
-        #      "name": "multi_agent_groq_openrouter",
-        #      "type": "multi_agent",
-        #  }
+         {
+             "name": "multi_agent_groq_openrouter",
+             "type": "multi_agent",
+         }
     ]
 
     dataset = load_dataset(config)
