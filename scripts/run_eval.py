@@ -167,11 +167,13 @@ def main():
             # ─────────────────────────────────────────────────────────────── #
 
         # Save per-model JSON report
+        # Phase 5: pass runner so each result gets an "insight" field
         output_path = f"evals/reports/report_{model_cfg['name']}.json"
-        generate_report(results, output_path)
+        generate_report(results, output_path, llm_runner=runner)
 
         # Per-model summary in terminal
-        summary = generate_summary(results)
+        # Phase 5: pass runner for batch-level LLM insight at end of summary
+        summary = generate_summary(results, llm_runner=runner)
         print(f"\n=== SUMMARY ({model_cfg['name']}) ===")
         print(summary)
 
