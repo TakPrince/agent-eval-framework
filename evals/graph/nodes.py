@@ -47,10 +47,15 @@ def make_generator_node(runner: Any) -> Callable[[AgentState], AgentState]:
             latency = time.perf_counter() - t0
 
             state.sql = sql
+            model_name = getattr(runner, "model_name", "unknown")
+
             state.append_step(
                 agent_name=agent_name,
                 success=True,
-                output={"sql": sql},
+                output={
+                    "sql": sql,
+                    "model": model_name   # 🔥 CRITICAL FIX
+                },
                 latency=latency,
             )
 
@@ -156,10 +161,16 @@ def make_executor_node(runner: Any) -> Callable[[AgentState], AgentState]:
                 latency         = time.perf_counter() - t0
 
                 state.sql = corrected_sql          # update sql for next attempt
+                model_name = getattr(runner, "model_name", "unknown")
+
                 state.append_step(
                     agent_name="retry_generator",
                     success=True,
-                    output={"sql": corrected_sql, "attempt": attempt + 1},
+                    output={
+                        "sql": corrected_sql,
+                        "attempt": attempt + 1,
+                        "model": model_name   # 🔥 IMPORTANT
+                    },
                     latency=latency,
                 )
 

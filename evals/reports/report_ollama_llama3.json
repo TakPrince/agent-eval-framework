@@ -11,42 +11,78 @@
             "score": 1
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 2.147000122931786e-05,
+                "generator": 42.15941849199953,
+                "executor": 0.006829709000157891
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 42.1663,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.815
+            "agent_score": 1.0,
+            "performance_score": 0.44,
+            "final_score": 0.888,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.84,
+            "adjusted_score": 0.888
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.147000122931786e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT COUNT(*) FROM singer;"
+                    "sql": "SELECT COUNT(*) FROM singer;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 31.236842973999956
+                "latency": 42.15941849199953
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 5.859999987478659e-05
+                "success": true,
+                "output": [
+                    [
+                        3
+                    ]
+                ],
+                "error": null,
+                "latency": 0.006829709000157891
             }
-        ]
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
     },
     {
         "model": "ollama_llama3",
@@ -60,97 +96,197 @@
             "score": 1
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 2.2492000425700098e-05,
+                "generator": 6.097518154998397,
+                "executor": 0.00046526499863830395
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 6.098,
+            "latency_score": 0.5,
             "error": 0,
-            "score": 0.3
+            "score": 0.65
         },
         "final": {
             "sql_score": 1,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.815
+            "agent_score": 1.0,
+            "performance_score": 0.65,
+            "final_score": 0.93,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.9,
+            "adjusted_score": 0.93
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": []
+                },
+                "error": null,
+                "latency": 2.2492000425700098e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT COUNT(*) FROM singer;"
+                    "sql": "SELECT COUNT(*) FROM singer;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 4.2044034680000095
+                "latency": 6.097518154998397
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.0152000161033357e-05
+                "success": true,
+                "output": [
+                    [
+                        3
+                    ]
+                ],
+                "error": null,
+                "latency": 0.00046526499863830395
             }
-        ]
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
     },
     {
         "model": "ollama_llama3",
         "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY (EXTRACT(YEAR FROM birthday)) DESC;",
+        "predicted_sql": "SELECT name, country FROM singer ORDER BY (CURRENT_DATE - birthday) ASC;",
         "sql_eval": {
-            "execution_match": 0,
+            "execution_match": 1,
             "exact_match": 0,
             "partial_match": 0,
-            "score": 0
+            "score": 1
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 5,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 1.763700129231438e-05,
+                "generator": 12.307470553001622,
+                "executor": 0.0004912949989375193,
+                "retry_generator": 17.671416735000093
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "efficiency": 0.8,
+            "failure_rate": 1.0,
+            "score": 0.54
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 29.98,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
-            "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "sql_score": 1,
+            "agent_score": 0.54,
+            "performance_score": 0.44,
+            "final_score": 0.75,
+            "trajectory_eval": {
+                "step_count": 5,
+                "error_steps": 1,
+                "recovery_attempts": 1,
+                "recovery_success": 1,
+                "trajectory_score": 0.9
+            },
+            "ves_score": 0.81,
+            "adjusted_score": 0.67
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "country",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.763700129231438e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT name, country \nFROM singer \nORDER BY (EXTRACT(YEAR FROM birthday)) DESC;"
+                    "sql": "SELECT name, country \nFROM singer \nORDER BY DATEDIFF(CURRENT_DATE, birthday) ASC;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 10.749226902999908
+                "latency": 12.307470553001622
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.9268999924170203e-05
+                "error": "OperationalError: no such function: DATEDIFF",
+                "latency": 0.0006441469995479565
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT name, country FROM singer ORDER BY (CURRENT_DATE - birthday) ASC;",
+                    "attempt": 1,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 17.671416735000093
+            },
+            {
+                "agent_name": "executor",
+                "success": true,
+                "output": [
+                    [
+                        "C",
+                        "USA"
+                    ],
+                    [
+                        "A",
+                        "USA"
+                    ],
+                    [
+                        "B",
+                        "UK"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0004912949989375193
             }
-        ]
+        ],
+        "insight": "Here's my analysis:\nThe SQL query resulted in a score of 1, indicating success. The query achieved this by using the `ORDER BY` clause with `(CURRENT_DATE - birthday)` as the sorting criterion, which is correct. However, there was an error and the system had to retry once.\nA stage that struggled was likely the understanding of the \"ordered by age\" requirement, which led to the error.\nOne concrete system-level improvement would be to enhance the natural language processing (NLP) module to better handle temporal reasoning and date-related queries."
     },
     {
         "model": "ollama_llama3",
         "query": "What are the names, countries for every singer in descending order of age?",
         "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
-        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATEDIFF(CURRENT_DATE, s.birthday) DESC;",
+        "predicted_sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY TIMESTAMPDIFF(YEAR, MONTH(s.birthday), YEAR(CURDATE())) DESC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -158,48 +294,118 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.3557000531582162e-05,
+                "generator": 12.229617241999222,
+                "executor": 0.0004507789999479428,
+                "retry_generator": 19.87567495300027
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
         },
         "performance_eval": {
-            "latency": null,
+            "latency": 55.4657,
             "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "error": 1,
+            "score": 0.0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.3557000531582162e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY DATEDIFF(CURRENT_DATE, s.birthday) DESC;"
+                    "sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY TIMESTAMPDIFF(YEAR, s.birthday, CURDATE()) DESC;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 13.124072522999995
+                "latency": 12.229617241999222
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.175899999201647e-05
+                "error": "OperationalError: no such column: YEAR",
+                "latency": 0.00045579699872178026
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY TIMESTAMPDIFF(quarter, date_format(s.birthday, '%Y-%m-01'), CURDATE()) DESC;",
+                    "attempt": 1,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 23.35898703299972
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: no such column: quarter",
+                "latency": 0.0004600079992087558
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT s.name, s.country \nFROM singer s \nORDER BY TIMESTAMPDIFF(YEAR, MONTH(s.birthday), YEAR(CURDATE())) DESC;",
+                    "attempt": 2,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 19.87567495300027
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: no such column: YEAR",
+                "latency": 0.0004507789999479428
             }
-        ]
+        ],
+        "insight": "Here's my response:\nThe SQL query failed because it uses the TIMESTAMPDIFF function and CURDATE() which are not available in the given database schema. The result did not struggle with any specific stage as there were no errors during the trajectory.\nOne concrete system-level improvement would be to provide a more robust natural language processing module that can accurately translate queries into SQL syntax, taking into account the limitations of the underlying database management system."
     },
     {
         "model": "ollama_llama3",
         "query": "What is the average, minimum, and maximum id of all French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) FROM singer WHERE country = 'France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -207,48 +413,86 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 3.02359985653311e-05,
+                "generator": 11.047274196000217,
+                "executor": 0.0005006210012652446
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 11.0478,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 1.0,
+            "performance_score": 0.44,
+            "final_score": 0.388,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.34,
+            "adjusted_score": 0.388
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 3.02359985653311e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';"
+                    "sql": "SELECT AVG(id), MIN(id), MAX(id) FROM singer WHERE country = 'France';",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 9.412584383000194
+                "latency": 11.047274196000217
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.0477999896684196e-05
+                "success": true,
+                "output": [
+                    [
+                        null,
+                        null,
+                        null
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0005006210012652446
             }
-        ]
+        ],
+        "insight": "Here's my response:\nThe result succeeded because the SQL query correctly filters out singers from other countries and calculates the average, minimum, and maximum ID for French singers.\nNo stage struggled since there were no errors. \nOne concrete system-level improvement would be to implement a more robust error handling mechanism to capture potential exceptions or edge cases that might arise during the NL2SQL conversion process."
     },
     {
         "model": "ollama_llama3",
         "query": "What is the average, minimum, and maximum id for French singers?",
         "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
-        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';",
+        "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country='France';",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -256,48 +500,86 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 2.284099900862202e-05,
+                "generator": 9.761227858998609,
+                "executor": 0.0006314509992080275
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 9.7619,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 1.0,
+            "performance_score": 0.44,
+            "final_score": 0.388,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.34,
+            "adjusted_score": 0.388
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.284099900862202e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France';"
+                    "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country='France';",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 8.173129007999933
+                "latency": 9.761227858998609
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.2618999992118916e-05
+                "success": true,
+                "output": [
+                    [
+                        null,
+                        null,
+                        null
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0006314509992080275
             }
-        ]
+        ],
+        "insight": "The SQL query successfully executed, achieving a score of 1.0.\nThe query did not struggle at all, as indicated by error_steps = 0 and recovery_attempts = 0.\nOne potential system-level improvement is to incorporate more advanced country name recognition algorithms to better handle variations in country names (e.g., 'France' vs. 'french'), which could further enhance the AI's ability to accurately generate SQL queries."
     },
     {
         "model": "ollama_llama3",
         "query": "Show the name and the release year of the song by the youngest singer.",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, EXTRACT(YEAR FROM age(birthday)) AS release_year \nFROM singer s \nORDER BY birthday ASC \nLIMIT 1;",
+        "predicted_sql": "SELECT s.name, 'no data' AS release_year\nFROM singer s\nWHERE s.id = (SELECT MIN(s2.id) FROM singer s2)\nORDER BY s.birthday ASC;",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -305,48 +587,85 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 1.9171999156242236e-05,
+                "generator": 17.956670446001226,
+                "executor": 0.0004960639998898841
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 17.9572,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 1.0,
+            "performance_score": 0.44,
+            "final_score": 0.388,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.34,
+            "adjusted_score": 0.388
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 1.9171999156242236e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT s.name, EXTRACT(YEAR FROM age(birthday)) AS release_year \nFROM singer s \nORDER BY birthday ASC \nLIMIT 1;"
+                    "sql": "SELECT s.name, 'no data' AS release_year\nFROM singer s\nWHERE s.id = (SELECT MIN(s2.id) FROM singer s2)\nORDER BY s.birthday ASC;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 14.051129842000137
+                "latency": 17.956670446001226
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 3.0813999956080806e-05
+                "success": true,
+                "output": [
+                    [
+                        "A",
+                        "no data"
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0004960639998898841
             }
-        ]
+        ],
+        "insight": "Here's the analysis:\nThe SQL query does not provide the release year of the song, but instead returns 'no data' for that column, indicating a failure to retrieve the desired information.\nNo stage struggled, as there were no error steps recorded. However, the result failed due to incorrect retrieval of the required information.\nOne concrete system-level improvement would be to add more robust error handling and exception mechanisms to handle such cases where the generated SQL query does not provide the expected results."
     },
     {
         "model": "ollama_llama3",
         "query": "What are the names and release years for all the songs of the youngest singer?",
         "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
-        "predicted_sql": "SELECT s.name, 'release year' AS release_year FROM singer s WHERE s.id IN (SELECT MIN(id) FROM singer);",
+        "predicted_sql": "SELECT s.name, NULL AS release_year FROM singer s WHERE s.id IN (SELECT MIN(id) FROM singer);",
         "sql_eval": {
             "execution_match": 0,
             "exact_match": 0,
@@ -354,96 +673,84 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 3,
+            "agent_latencies": {
+                "extractor": 1.775800046743825e-05,
+                "generator": 12.043203176002862,
+                "executor": 0.0005163870009710081
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
+            "efficiency": 1.0,
             "failure_rate": 0.0,
-            "score": 0.85
+            "score": 1.0
         },
         "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
+            "latency": 12.0437,
+            "latency_score": 0.2,
             "error": 0,
-            "score": 0.3
+            "score": 0.44
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 1.0,
+            "performance_score": 0.44,
+            "final_score": 0.388,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 0,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 1.0
+            },
+            "ves_score": 0.34,
+            "adjusted_score": 0.388
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 1.775800046743825e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT s.name, 'release year' AS release_year FROM singer s WHERE s.id IN (SELECT MIN(id) FROM singer);"
+                    "sql": "SELECT s.name, NULL AS release_year FROM singer s WHERE s.id IN (SELECT MIN(id) FROM singer);",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 14.034035123999956
+                "latency": 12.043203176002862
             },
             {
                 "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.224199988631881e-05
+                "success": true,
+                "output": [
+                    [
+                        "A",
+                        null
+                    ]
+                ],
+                "error": null,
+                "latency": 0.0005163870009710081
             }
-        ]
+        ],
+        "insight": "Here is the analysis:\n1. The SQL query failed because it doesn't provide release years for songs, which are not available in the singer table.\n2. No stage struggled as error_steps = 0 and recovery_attempts = 0.\n3. A concrete system-level improvement would be to add a \"song\" table with columns \"id\", \"name\", \"release_year\" and singer_id referencing the singer table, allowing for correct queries about songs."
     },
     {
         "model": "ollama_llama3",
         "query": "What are all distinct countries where singers born in 2001 are from?",
         "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
-        "predicted_sql": "SELECT DISTINCT country FROM singer WHERE YEAR(birthday) = 2001;",
-        "sql_eval": {
-            "execution_match": 0,
-            "exact_match": 0,
-            "partial_match": 0,
-            "score": 0
-        },
-        "agent_eval": {
-            "mode": "single_agent",
-            "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
-        },
-        "performance_eval": {
-            "latency": null,
-            "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
-        },
-        "final": {
-            "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
-        },
-        "steps": [
-            {
-                "agent_name": "generator",
-                "success": true,
-                "output": {
-                    "sql": "SELECT DISTINCT country FROM singer WHERE YEAR(birthday) = 2001;"
-                },
-                "error": null,
-                "latency": 8.764850944000045
-            },
-            {
-                "agent_name": "executor",
-                "success": false,
-                "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.3121999902286916e-05
-            }
-        ]
-    },
-    {
-        "model": "ollama_llama3",
-        "query": "What are  the different countries with singers born in 2001?",
-        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
         "predicted_sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
         "sql_eval": {
             "execution_match": 0,
@@ -452,41 +759,228 @@
             "score": 0
         },
         "agent_eval": {
-            "mode": "single_agent",
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 1.8943999748444185e-05,
+                "generator": 11.540841158999683,
+                "executor": 0.0005436409992398694,
+                "retry_generator": 8.262398562997987
+            },
             "tool_accuracy": 1.0,
-            "efficiency": 0.5,
-            "failure_rate": 0.0,
-            "score": 0.85
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
         },
         "performance_eval": {
-            "latency": null,
+            "latency": 39.8749,
             "latency_score": 0.0,
-            "error": 0,
-            "score": 0.3
+            "error": 1,
+            "score": 0.0
         },
         "final": {
             "sql_score": 0,
-            "agent_score": 0.85,
-            "performance_score": 0.3,
-            "final_score": 0.315
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
         },
         "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.8943999748444185e-05
+            },
             {
                 "agent_name": "generator",
                 "success": true,
                 "output": {
-                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;"
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "model": "llama3"
                 },
                 "error": null,
-                "latency": 9.546054032000029
+                "latency": 11.540841158999683
             },
             {
                 "agent_name": "executor",
                 "success": false,
                 "output": null,
-                "error": "db_utils not available in this environment (ImportError)",
-                "latency": 2.48900000769936e-05
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0004594080019160174
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "attempt": 1,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 20.070168681002542
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0004531499980657827
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "attempt": 2,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 8.262398562997987
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0005436409992398694
             }
-        ]
+        ],
+        "insight": "The query resulted in a score of 0 for SQL, indicating that it failed to correctly generate the desired SQL statement.\nAnalysis: The query attempts to extract the year from the birthday column and compare it to 2001. This approach is incorrect because the EXTRACT function is not supported by standard SQL syntax, and the singer table does not contain a datetime data type. A correct solution would use date functions specific to the underlying database system or convert the birthday column to a datetime format.\nThe trajectory shows that the system struggled with errors (3) and retries (2), indicating that it did not succeed in generating the desired SQL statement.\nTo improve this system, one concrete improvement is to develop more robust date and time parsing capabilities, allowing the system to correctly handle different date formats."
+    },
+    {
+        "model": "ollama_llama3",
+        "query": "What are  the different countries with singers born in 2001?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
+        "predicted_sql": "SELECT DISTINCT country FROM singer WHERE EXTRACT(YEAR FROM birthday) = 2001;",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 1.744600012898445e-05,
+                "generator": 11.724989320999157,
+                "executor": 0.0004902949985989835,
+                "retry_generator": 15.834523219000403
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 44.7936,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.744600012898445e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country \nFROM singer \nWHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 11.724989320999157
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0004965009975421708
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country FROM singer WHERE YEAR(birthday) = 2001;",
+                    "attempt": 1,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 17.232533033002255
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: no such function: YEAR",
+                "latency": 0.000507356999150943
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT DISTINCT country FROM singer WHERE EXTRACT(YEAR FROM birthday) = 2001;",
+                    "attempt": 2,
+                    "model": "llama3"
+                },
+                "error": null,
+                "latency": 15.834523219000403
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"FROM\": syntax error",
+                "latency": 0.0004902949985989835
+            }
+        ],
+        "insight": "Result: Succeeded\nThe query successfully retrieved the different countries with singers born in 2001 because it correctly used the `WHERE` clause to filter the data and the `DISTINCT` keyword to return unique countries.\nNo stages struggled as there are no errors present."
     }
 ]

@@ -1,0 +1,1051 @@
+[
+    {
+        "model": "gemini_lite",
+        "query": "How many singers do we have?",
+        "expected_sql": "SELECT count(*) FROM singer",
+        "predicted_sql": "SELECT COUNT(*) FROM singers;",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 1,
+            "score": 0.5
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.3337001039180905e-05,
+                "generator": 1.2526792499993462,
+                "executor": 0.00047783300033188425,
+                "retry_generator": 12.185856183001306
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 17.8359,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0.5,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.39142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.31,
+            "adjusted_score": 0.1814
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.3337001039180905e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT COUNT(*) FROM singers;\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 1.2526792499993462
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT COUNT(*) FROM singers;\n```\": syntax error",
+                "latency": 0.0006374820004566573
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT COUNT(*) FROM singers;\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 4.395731822998641
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT COUNT(*) FROM singers;\n```\": syntax error",
+                "latency": 0.00046350599950528704
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT COUNT(*) FROM singers;",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 12.185856183001306
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: no such table: singers",
+                "latency": 0.00047783300033188425
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What is the total number of singers?",
+        "expected_sql": "SELECT count(*) FROM singer",
+        "predicted_sql": "```sql\nSELECT count(*) FROM sqlite_master WHERE type='table' AND name='singers';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.397000207565725e-05,
+                "generator": 5.194371571000374,
+                "executor": 0.0005146690018591471,
+                "retry_generator": 3.9932019089974347
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 17.2776,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": []
+                },
+                "error": null,
+                "latency": 2.397000207565725e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT count(*) FROM singers\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 5.194371571000374
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT count(*) FROM singers\n```\": syntax error",
+                "latency": 0.0004172389999439474
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "SELECT count(*) FROM singers",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 8.088629047997529
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: no such table: singers",
+                "latency": 0.00046674599798279814
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT count(*) FROM sqlite_master WHERE type='table' AND name='singers';\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.9932019089974347
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT count(*) FROM sqlite_master WHERE type='table' AND name='singers';\n```\": syntax error",
+                "latency": 0.0005146690018591471
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
+        "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+        "predicted_sql": "```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.2121999791124836e-05,
+                "generator": 6.943110611002339,
+                "executor": 0.0005173360004846472,
+                "retry_generator": 5.324652988001617
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 18.4123,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "country",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.2121999791124836e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 6.943110611002339
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```\": syntax error",
+                "latency": 0.00042286600000807084
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 6.1431121959976736
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```\": syntax error",
+                "latency": 0.0005060459989181254
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 5.324652988001617
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT Name, Country\nFROM Singers\nORDER BY Age DESC;\n```\": syntax error",
+                "latency": 0.0005173360004846472
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What are the names, countries for every singer in descending order of age?",
+        "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+        "predicted_sql": "```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.192200190620497e-05,
+                "generator": 5.09775068199815,
+                "executor": 0.00047693700253148563,
+                "retry_generator": 5.733821200999955
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 16.1575,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name",
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 2.192200190620497e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 5.09775068199815
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```\": syntax error",
+                "latency": 0.0004140429991821293
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 5.324513521998597
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```\": syntax error",
+                "latency": 0.0005242680017545354
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 5.733821200999955
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT name, country\nFROM singer\nORDER BY age DESC;\n```\": syntax error",
+                "latency": 0.00047693700253148563
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What is the average, minimum, and maximum id of all French singers?",
+        "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+        "predicted_sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 1.8818998796632513e-05,
+                "generator": 16.264215572999092,
+                "executor": 0.0004264999988663476,
+                "retry_generator": 3.4805370520007273
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 23.4316,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.8818998796632513e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 16.264215572999092
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.00047664600060670637
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.6855517539988796
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.00041417599641135894
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.4805370520007273
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.0004264999988663476
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What is the average, minimum, and maximum id for French singers?",
+        "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+        "predicted_sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 1.6868001694092527e-05,
+                "generator": 4.075903209999524,
+                "executor": 0.00048100400090334006,
+                "retry_generator": 3.274357467998925
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 11.0372,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "id"
+                    ]
+                },
+                "error": null,
+                "latency": 1.6868001694092527e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 4.075903209999524
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.0006749579988536425
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.6851353210004163
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.0006427340013033245
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.274357467998925
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT AVG(id), MIN(id), MAX(id)\nFROM singers\nWHERE nationality = 'French';\n```\": syntax error",
+                "latency": 0.00048100400090334006
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "Show the name and the release year of the song by the youngest singer.",
+        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+        "predicted_sql": "```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```",
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 7,
+            "agents_succeeded": 4,
+            "agent_latencies": {
+                "extractor": 2.1076000848552212e-05,
+                "generator": 3.5669615429978876,
+                "executor": 0.00047668000115663745,
+                "retry_generator": 1.5340402239999094
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.5714,
+            "failure_rate": 1.0,
+            "score": 0.4714
+        },
+        "performance_eval": {
+            "latency": 8.6851,
+            "latency_score": 0.0,
+            "error": 1,
+            "score": 0.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.4714,
+            "performance_score": 0.0,
+            "final_score": 0.14142,
+            "trajectory_eval": {
+                "step_count": 7,
+                "error_steps": 3,
+                "recovery_attempts": 2,
+                "recovery_success": 0,
+                "trajectory_score": 0.2
+            },
+            "ves_score": 0.06,
+            "adjusted_score": 0.0
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {
+                    "tables": [
+                        "singer"
+                    ],
+                    "columns": [
+                        "name"
+                    ]
+                },
+                "error": null,
+                "latency": 2.1076000848552212e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```",
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.5669615429978876
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```\": syntax error",
+                "latency": 0.00041463999878033064
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```",
+                    "attempt": 1,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 3.582790431999456
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```\": syntax error",
+                "latency": 0.0004168600025877822
+            },
+            {
+                "agent_name": "retry_generator",
+                "success": true,
+                "output": {
+                    "sql": "```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```",
+                    "attempt": 2,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 1.5340402239999094
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "OperationalError: near \"```sql\nSELECT s.name, s.release_year\nFROM songs s\nJOIN singers si ON s.singer_id = si.singer_id\nORDER BY si.birth_year DESC\nLIMIT 1;\n```\": syntax error",
+                "latency": 0.00047668000115663745
+            }
+        ],
+        "insight": "[Insight unavailable \u2014 LLM returned SQL instead of analysis]"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What are the names and release years for all the songs of the youngest singer?",
+        "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 2,
+            "agent_latencies": {
+                "extractor": 1.794900163076818e-05,
+                "generator": 0.17853819600350107,
+                "executor": 1.172000338556245e-06
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.6667,
+            "failure_rate": 1.0,
+            "score": 0.5
+        },
+        "performance_eval": {
+            "latency": 0.1786,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.5,
+            "performance_score": 1.0,
+            "final_score": 0.35,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 1,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 0.8
+            },
+            "ves_score": 0.44,
+            "adjusted_score": 0.3
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {},
+                "error": null,
+                "latency": 1.794900163076818e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": null,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 0.17853819600350107
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "Skipped: generator produced no SQL",
+                "latency": 1.172000338556245e-06
+            }
+        ],
+        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- Do NOT generate SQL\\n- Respond ONLY in plain English\\n\\nAnalyze the NL2SQL result strictly based on the data below.\\n\\nQuery: What are the names and release years for all the songs of the youngest singer?\\nSQL: None\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.5\\n- Performance: 1.0\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 1\\n- Retries: 0\\n\\nSTRICT RULES:\\n- If error_steps = 0 \u2192 system did NOT struggle\\n- If recovery_attempts = 0 \u2192 no retry occurred\\n- DO NOT assume failures if not present\\n- ONLY use given numbers\\n\\nTasks:\\n1. Explain why the result succeeded or failed\\n2. Identify if any stage struggled (ONLY if errors > 0)\\n3. Suggest one concrete system-level improvement\\n\\nKeep answer concise (3-5 lines).\\n', 'sql': None, 'answer': None, 'steps': [], 'total_latency': None, 'error': '429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-2.5-flash-lite\\nPlease retry in 42.546489861s. [links {\\n  description: \"Learn more about Gemini API quotas\"\\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n}\\n, violations {\\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\\n  quota_dimensions {\\n    key: \"model\"\\n    value: \"gemini-2.5-flash-lite\"\\n  }\\n  quota_dimensions {\\n    key: \"location\"\\n    value: \"global\"\\n  }\\n  quota_value: 10\\n}\\n, retry_delay {\\n  seconds: 42\\n}\\n]'}"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What are all distinct countries where singers born in 2001 are from?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 2,
+            "agent_latencies": {
+                "extractor": 1.8138998711947352e-05,
+                "generator": 0.19369930399989244,
+                "executor": 1.7029997252393514e-06
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.6667,
+            "failure_rate": 1.0,
+            "score": 0.5
+        },
+        "performance_eval": {
+            "latency": 0.1937,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.5,
+            "performance_score": 1.0,
+            "final_score": 0.35,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 1,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 0.8
+            },
+            "ves_score": 0.44,
+            "adjusted_score": 0.3
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {},
+                "error": null,
+                "latency": 1.8138998711947352e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": null,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 0.19369930399989244
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "Skipped: generator produced no SQL",
+                "latency": 1.7029997252393514e-06
+            }
+        ],
+        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- Do NOT generate SQL\\n- Respond ONLY in plain English\\n\\nAnalyze the NL2SQL result strictly based on the data below.\\n\\nQuery: What are all distinct countries where singers born in 2001 are from?\\nSQL: None\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.5\\n- Performance: 1.0\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 1\\n- Retries: 0\\n\\nSTRICT RULES:\\n- If error_steps = 0 \u2192 system did NOT struggle\\n- If recovery_attempts = 0 \u2192 no retry occurred\\n- DO NOT assume failures if not present\\n- ONLY use given numbers\\n\\nTasks:\\n1. Explain why the result succeeded or failed\\n2. Identify if any stage struggled (ONLY if errors > 0)\\n3. Suggest one concrete system-level improvement\\n\\nKeep answer concise (3-5 lines).\\n', 'sql': None, 'answer': None, 'steps': [], 'total_latency': None, 'error': '429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-2.5-flash-lite\\nPlease retry in 42.344050797s. [links {\\n  description: \"Learn more about Gemini API quotas\"\\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n}\\n, violations {\\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\\n  quota_dimensions {\\n    key: \"model\"\\n    value: \"gemini-2.5-flash-lite\"\\n  }\\n  quota_dimensions {\\n    key: \"location\"\\n    value: \"global\"\\n  }\\n  quota_value: 10\\n}\\n, retry_delay {\\n  seconds: 42\\n}\\n]'}"
+    },
+    {
+        "model": "gemini_lite",
+        "query": "What are  the different countries with singers born in 2001?",
+        "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
+        "predicted_sql": null,
+        "sql_eval": {
+            "execution_match": 0,
+            "exact_match": 0,
+            "partial_match": 0,
+            "score": 0
+        },
+        "agent_eval": {
+            "mode": "multi_stage",
+            "agents_run": 3,
+            "agents_succeeded": 2,
+            "agent_latencies": {
+                "extractor": 3.9077000110410154e-05,
+                "generator": 0.17632078300084686,
+                "executor": 5.360016075428575e-07
+            },
+            "tool_accuracy": 1.0,
+            "efficiency": 0.6667,
+            "failure_rate": 1.0,
+            "score": 0.5
+        },
+        "performance_eval": {
+            "latency": 0.1764,
+            "latency_score": 1.0,
+            "error": 0,
+            "score": 1.0
+        },
+        "final": {
+            "sql_score": 0,
+            "agent_score": 0.5,
+            "performance_score": 1.0,
+            "final_score": 0.35,
+            "trajectory_eval": {
+                "step_count": 3,
+                "error_steps": 1,
+                "recovery_attempts": 0,
+                "recovery_success": 0,
+                "trajectory_score": 0.8
+            },
+            "ves_score": 0.44,
+            "adjusted_score": 0.3
+        },
+        "steps": [
+            {
+                "agent_name": "extractor",
+                "success": true,
+                "output": {},
+                "error": null,
+                "latency": 3.9077000110410154e-05
+            },
+            {
+                "agent_name": "generator",
+                "success": true,
+                "output": {
+                    "sql": null,
+                    "model": "unknown"
+                },
+                "error": null,
+                "latency": 0.17632078300084686
+            },
+            {
+                "agent_name": "executor",
+                "success": false,
+                "output": null,
+                "error": "Skipped: generator produced no SQL",
+                "latency": 5.360016075428575e-07
+            }
+        ],
+        "insight": "{'query': 'You are an AI system evaluator.\\n\\nIMPORTANT:\\n- Do NOT generate SQL\\n- Respond ONLY in plain English\\n\\nAnalyze the NL2SQL result strictly based on the data below.\\n\\nQuery: What are  the different countries with singers born in 2001?\\nSQL: None\\n\\nScores:\\n- SQL: 0\\n- Agent: 0.5\\n- Performance: 1.0\\n\\nTrajectory:\\n- Steps: 3\\n- Errors: 1\\n- Retries: 0\\n\\nSTRICT RULES:\\n- If error_steps = 0 \u2192 system did NOT struggle\\n- If recovery_attempts = 0 \u2192 no retry occurred\\n- DO NOT assume failures if not present\\n- ONLY use given numbers\\n\\nTasks:\\n1. Explain why the result succeeded or failed\\n2. Identify if any stage struggled (ONLY if errors > 0)\\n3. Suggest one concrete system-level improvement\\n\\nKeep answer concise (3-5 lines).\\n', 'sql': None, 'answer': None, 'steps': [], 'total_latency': None, 'error': '429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-2.5-flash-lite\\nPlease retry in 42.229805439s. [links {\\n  description: \"Learn more about Gemini API quotas\"\\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n}\\n, violations {\\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\\n  quota_dimensions {\\n    key: \"model\"\\n    value: \"gemini-2.5-flash-lite\"\\n  }\\n  quota_dimensions {\\n    key: \"location\"\\n    value: \"global\"\\n  }\\n  quota_value: 10\\n}\\n, retry_delay {\\n  seconds: 42\\n}\\n]'}"
+    }
+]

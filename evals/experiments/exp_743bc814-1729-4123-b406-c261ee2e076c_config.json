@@ -1,10 +1,8 @@
 {
-    "experiment_id": "7249674d-e98f-4eb3-9e28-28da66fe9734",
-    "timestamp": "2026-05-01T14:29:39.350329+00:00",
+    "experiment_id": "743bc814-1729-4123-b406-c261ee2e076c",
+    "timestamp": "2026-05-01T18:14:34.469093+00:00",
     "models": [
-        "groq_llama3",
-        "openrouter_mixtral",
-        "multi_agent_groq_openrouter"
+        "groq_llama3"
     ],
     "dataset": "unknown",
     "config": {

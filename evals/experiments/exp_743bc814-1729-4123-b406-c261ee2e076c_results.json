@@ -1,0 +1,895 @@
+{
+    "experiment_id": "743bc814-1729-4123-b406-c261ee2e076c",
+    "timestamp": "2026-05-01T18:14:34.469093+00:00",
+    "models": [
+        "groq_llama3"
+    ],
+    "dataset": "unknown",
+    "total_queries": 10,
+    "results": [
+        {
+            "model": "groq_llama3",
+            "query": "How many singers do we have?",
+            "expected_sql": "SELECT count(*) FROM singer",
+            "predicted_sql": "SELECT COUNT(*) FROM singer",
+            "sql_eval": {
+                "execution_match": 1,
+                "exact_match": 1,
+                "partial_match": 1,
+                "score": 1
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 2.3936998331919312e-05,
+                    "generator": 0.2107809669978451,
+                    "executor": 0.0014535179980157409
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.2123,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 1,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 1.0,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 1.0,
+                "adjusted_score": 1.0
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.3936998331919312e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT COUNT(*) FROM singer",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.2107809669978451
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            3
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0014535179980157409
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What is the total number of singers?",
+            "expected_sql": "SELECT count(*) FROM singer",
+            "predicted_sql": "SELECT COUNT(*) FROM singer",
+            "sql_eval": {
+                "execution_match": 1,
+                "exact_match": 1,
+                "partial_match": 1,
+                "score": 1
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 1.97669978660997e-05,
+                    "generator": 0.20170127900200896,
+                    "executor": 0.0010934780002571642
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.2028,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 1,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 1.0,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 1.0,
+                "adjusted_score": 1.0
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": []
+                    },
+                    "error": null,
+                    "latency": 1.97669978660997e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT COUNT(*) FROM singer",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.20170127900200896
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            3
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0010934780002571642
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "Show name, country for all singers ordered by age from the oldest to the youngest.",
+            "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+            "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC",
+            "sql_eval": {
+                "execution_match": 1,
+                "exact_match": 1,
+                "partial_match": 1,
+                "score": 1
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 2.212599792983383e-05,
+                    "generator": 0.3554641049995553,
+                    "executor": 0.0010618699998303782
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.3565,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 1,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 1.0,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 1.0,
+                "adjusted_score": 1.0
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "name",
+                            "country",
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.212599792983383e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.3554641049995553
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            "B",
+                            "UK"
+                        ],
+                        [
+                            "A",
+                            "USA"
+                        ],
+                        [
+                            "C",
+                            "USA"
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0010618699998303782
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What are the names, countries for every singer in descending order of age?",
+            "expected_sql": "SELECT name ,  country  FROM singer ORDER BY birthday ASC",
+            "predicted_sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC",
+            "sql_eval": {
+                "execution_match": 1,
+                "exact_match": 1,
+                "partial_match": 1,
+                "score": 1
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 1.8266000552102923e-05,
+                    "generator": 0.2356255519989645,
+                    "executor": 0.0012315380008658394
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.2369,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 1,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 1.0,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 1.0,
+                "adjusted_score": 1.0
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "name",
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 1.8266000552102923e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT name, country \nFROM singer \nORDER BY birthday ASC",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.2356255519989645
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            "B",
+                            "UK"
+                        ],
+                        [
+                            "A",
+                            "USA"
+                        ],
+                        [
+                            "C",
+                            "USA"
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0012315380008658394
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What is the average, minimum, and maximum id of all French singers?",
+            "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+            "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'",
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 2.4872002541087568e-05,
+                    "generator": 0.43171249499937403,
+                    "executor": 0.0010584769988781773
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.4328,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 0.5,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 0.5,
+                "adjusted_score": 0.5
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.4872002541087568e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.43171249499937403
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            null,
+                            null,
+                            null
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0010584769988781773
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What is the average, minimum, and maximum id for French singers?",
+            "expected_sql": "SELECT avg(Singer_ID) ,  min(Singer_ID) ,  max(Singer_ID) FROM singer WHERE country  =  'France'",
+            "predicted_sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'",
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 3,
+                "agent_latencies": {
+                    "extractor": 1.9396997231524438e-05,
+                    "generator": 0.22138375299982727,
+                    "executor": 0.0012590299993462395
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 1.0,
+                "failure_rate": 0.0,
+                "score": 1.0
+            },
+            "performance_eval": {
+                "latency": 0.2227,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 1.0,
+                "performance_score": 1.0,
+                "final_score": 0.5,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 0,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 1.0
+                },
+                "ves_score": 0.5,
+                "adjusted_score": 0.5
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 1.9396997231524438e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT AVG(id), MIN(id), MAX(id) \nFROM singer \nWHERE country = 'France'",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.22138375299982727
+                },
+                {
+                    "agent_name": "executor",
+                    "success": true,
+                    "output": [
+                        [
+                            null,
+                            null,
+                            null
+                        ]
+                    ],
+                    "error": null,
+                    "latency": 0.0012590299993462395
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "Show the name and the release year of the song by the youngest singer.",
+            "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+            "predicted_sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 7,
+                "agents_succeeded": 4,
+                "agent_latencies": {
+                    "extractor": 2.2792999516241252e-05,
+                    "generator": 0.3479478619992733,
+                    "executor": 0.001144244997703936,
+                    "retry_generator": 0.12884109199876548
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 0.5714,
+                "failure_rate": 1.0,
+                "score": 0.4714
+            },
+            "performance_eval": {
+                "latency": 0.5807,
+                "latency_score": 0.0,
+                "error": 1,
+                "score": 0.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 0.4714,
+                "performance_score": 0.0,
+                "final_score": 0.14142,
+                "trajectory_eval": {
+                    "step_count": 7,
+                    "error_steps": 3,
+                    "recovery_attempts": 2,
+                    "recovery_success": 0,
+                    "trajectory_score": 0.0
+                },
+                "ves_score": 0.0,
+                "adjusted_score": 0.0
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.2792999516241252e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.3479478619992733
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "OperationalError: near \"FROM\": syntax error",
+                    "latency": 0.0012194990013085771
+                },
+                {
+                    "agent_name": "retry_generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+                        "attempt": 1,
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.10052365499723237
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "OperationalError: near \"FROM\": syntax error",
+                    "latency": 0.0009962349977286067
+                },
+                {
+                    "agent_name": "retry_generator",
+                    "success": true,
+                    "output": {
+                        "sql": "SELECT name, EXTRACT(YEAR FROM birthday) \nFROM singer \nORDER BY birthday DESC \nLIMIT 1",
+                        "attempt": 2,
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.12884109199876548
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "OperationalError: near \"FROM\": syntax error",
+                    "latency": 0.001144244997703936
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What are the names and release years for all the songs of the youngest singer?",
+            "expected_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY birthday desc LIMIT 1",
+            "predicted_sql": null,
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 2,
+                "agent_latencies": {
+                    "extractor": 1.7106001905631274e-05,
+                    "generator": 0.1337065830011852,
+                    "executor": 1.2089985830243677e-06
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 0.6667,
+                "failure_rate": 1.0,
+                "score": 0.5
+            },
+            "performance_eval": {
+                "latency": 0.1337,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 0.5,
+                "performance_score": 1.0,
+                "final_score": 0.35,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 1,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 0.1
+                },
+                "ves_score": 0.23,
+                "adjusted_score": 0.3
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "name"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 1.7106001905631274e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": null,
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.1337065830011852
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "Skipped: generator produced no SQL",
+                    "latency": 1.2089985830243677e-06
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What are all distinct countries where singers born in 2001 are from?",
+            "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like '2001%'",
+            "predicted_sql": null,
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 2,
+                "agent_latencies": {
+                    "extractor": 2.4500001018168405e-05,
+                    "generator": 0.13202183499743114,
+                    "executor": 1.185600194730796e-05
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 0.6667,
+                "failure_rate": 1.0,
+                "score": 0.5
+            },
+            "performance_eval": {
+                "latency": 0.1321,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 0.5,
+                "performance_score": 1.0,
+                "final_score": 0.35,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 1,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 0.1
+                },
+                "ves_score": 0.23,
+                "adjusted_score": 0.3
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.4500001018168405e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": null,
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.13202183499743114
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "Skipped: generator produced no SQL",
+                    "latency": 1.185600194730796e-05
+                }
+            ]
+        },
+        {
+            "model": "groq_llama3",
+            "query": "What are  the different countries with singers born in 2001?",
+            "expected_sql": "SELECT DISTINCT country FROM singer WHERE birthday  like  '2001%'",
+            "predicted_sql": null,
+            "sql_eval": {
+                "execution_match": 0,
+                "exact_match": 0,
+                "partial_match": 0,
+                "score": 0
+            },
+            "agent_eval": {
+                "mode": "multi_stage",
+                "agents_run": 3,
+                "agents_succeeded": 2,
+                "agent_latencies": {
+                    "extractor": 2.0198000129312277e-05,
+                    "generator": 0.13895533299728413,
+                    "executor": 6.619993655476719e-07
+                },
+                "tool_accuracy": 1.0,
+                "efficiency": 0.6667,
+                "failure_rate": 1.0,
+                "score": 0.5
+            },
+            "performance_eval": {
+                "latency": 0.139,
+                "latency_score": 1.0,
+                "error": 0,
+                "score": 1.0
+            },
+            "final": {
+                "sql_score": 0,
+                "agent_score": 0.5,
+                "performance_score": 1.0,
+                "final_score": 0.35,
+                "trajectory_eval": {
+                    "step_count": 3,
+                    "error_steps": 1,
+                    "recovery_attempts": 0,
+                    "recovery_success": 0,
+                    "trajectory_score": 0.1
+                },
+                "ves_score": 0.23,
+                "adjusted_score": 0.3
+            },
+            "steps": [
+                {
+                    "agent_name": "extractor",
+                    "success": true,
+                    "output": {
+                        "tables": [
+                            "singer"
+                        ],
+                        "columns": [
+                            "id"
+                        ]
+                    },
+                    "error": null,
+                    "latency": 2.0198000129312277e-05
+                },
+                {
+                    "agent_name": "generator",
+                    "success": true,
+                    "output": {
+                        "sql": null,
+                        "model": "llama-3.3-70b-versatile"
+                    },
+                    "error": null,
+                    "latency": 0.13895533299728413
+                },
+                {
+                    "agent_name": "executor",
+                    "success": false,
+                    "output": null,
+                    "error": "Skipped: generator produced no SQL",
+                    "latency": 6.619993655476719e-07
+                }
+            ]
+        }
+    ]
+}

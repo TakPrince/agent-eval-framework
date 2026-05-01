@@ -1,9 +1,0 @@
-[
-  {
-    "id": "MA_001",
-    "query": "Compare revenue across regions",
-    "expected_tools": ["retriever", "sql_generator"],
-    "expected_steps": 2,
-    "difficulty": "medium"
-  }
-]
